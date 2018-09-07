@@ -14,13 +14,13 @@
   </nav>
   <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Draw tools</a>
+      <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">Image</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Filters</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">Image</a>
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Draw tools</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
@@ -72,7 +72,7 @@
           </div>
         </div>
         <label class="btn btn-info "><input class="filters-js" data-id="sepia" type="radio" name="options" id="option1" autocomplete="off" >Sepia</label>
-        <label class="btn btn-info"><input class="filters-js" data-id="binarizacion" type="radio" name="options" id="option2" autocomplete="off"> Binarizacion</label>
+        <label class="btn btn-info"><input class="filters-js" data-id="binarization" type="radio" name="options" id="option2" autocomplete="off"> Binarization</label>
         <label class="btn btn-info"><input class="filters-js" data-id="grayscale" type="radio" name="options" id="option3" autocomplete="off">Grayscale</label>
         <label class="btn btn-info"><input class="filters-js" data-id="negative" type="radio" name="options" id="option3" autocomplete="off"> Negative</label>
         <label class="btn btn-info"><input class="filtersConvolute-js" data-id="box_blur" type="radio" name="options" id="option3" autocomplete="off"> Box Blur</label>
@@ -85,10 +85,12 @@
       <input id="loadPicture-js" type="file">
       <button class="btn btn-success" id="savePicture-js" type="button" name="button">Save Picture</button>
     </div>
-
   <div class="canvas-container">
-    <canvas class="canvas" id="canvas-js" height="600" width="600"></canvas>
+    <canvas class="canvas" id="canvas-js" height="400" width="800"></canvas>
   </div>
+  <footer>
+    <p>Garcia Reinhold Arturo, Interfaces 2018<p>
+  </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
