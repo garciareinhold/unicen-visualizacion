@@ -1,13 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-//cursor patch, :(
-  $('body').awesomeCursor('pencil', {
-    hotspot: 'bottom left'
-  });
-  $('body').css('cursor', '');
-
-
-
   let ctx = document.getElementById("canvas-js").getContext("2d");
   let btn_save = document.getElementById('savePicture-js');
   btn_save.onclick = savePicture;
@@ -153,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
                    -1,-2,-1,
                     0,0,0,
                     1,2,1]
-            convolute(mat);
+            convoluteEdge(mat);
             break;
       }
 
@@ -275,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ////////////////////////////////////////////////////////////////////////////////
 
 //Convolution with an average value of pixel colors.
-/*function convolute(mat) {
+function convoluteEdge(mat) {
   let a= 255;
   let copy_image= getCopyImage(imageData);
 
@@ -292,13 +284,13 @@ document.addEventListener("DOMContentLoaded", function() {
       let originalPixel= (getPixelRed(imageData, x, y)+getPixelGreen(imageData, x, y)+getPixelBlue(imageData, x, y))/3;
       let imagePixels= [pixelUpLeft,pixelUp,pixelUpRight, pixelLeft, originalPixel, pixelRight, pixelDownLeft, pixelDown, pixelDownRight];
       let result=0;
+      //vertical
       for (var i = 0; i < imagePixels.length; i++) {
          result+= imagePixels[i]* mat[i];
       }
-      if(mat.length>imagePixels.length){
-        for (var i = 0, j=9; i < imagePixels.length; i++, j++) {
+      //horizontal
+      for (var i = 0, j=9; i < imagePixels.length; i++, j++) {
            result+= imagePixels[i]* mat[j];
-        }
       }
       let index = (x + y * (imageData.width)) * 4;
       copy_image.data[index+0]=result;
@@ -308,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   ctx.putImageData(copy_image, 0, 0);
-}*/
+}
 
 //Convolution with each color of the choosen pixel
 function convolute(mat) {
@@ -336,14 +328,6 @@ function convolute(mat) {
         resultR+= pixel.red* mat[i];
         resultG+= pixel.green* mat[i];
         resultB+= pixel.blue* mat[i];
-      }
-      if(mat.length>imagePixels.length){
-        for (var i = 0, j=9; i < imagePixels.length; i++, j++) {
-          let pixel= imagePixels[i];
-          resultR+= pixel.red* mat[j];
-          resultG+= pixel.green* mat[j];
-          resultB+= pixel.blue* mat[j];
-        }
       }
       let index = (x + y * (imageData.width)) * 4;
       copy_image.data[index+0]=resultR;
@@ -417,6 +401,12 @@ function convolute(mat) {
     'color': "rgb(0, 0, 0)"
   };
 
+  //cursor patch, :(
+    $('body').awesomeCursor('pencil', {
+      hotspot: 'bottom left'
+    });
+    $('body').css('cursor', '');
+
   let draw_data = {
     'clickCoordX': [],
     'clickCoordY': [],
@@ -449,7 +439,7 @@ function convolute(mat) {
     if(user_choice.eraser){
       $('body').awesomeCursor('eraser', {
         hotspot: 'bottom left',
-        size: $('input[name="eraser_size"]:checked').data("value")
+        size: $('input[name="eraser_size"]:checked').data("value"),
       });
     }
   })
@@ -463,7 +453,7 @@ function convolute(mat) {
       user_choice.eraser = true;
       $('body').awesomeCursor('eraser', {
         hotspot: 'bottom left',
-        size: $('input[name="eraser_size"]:checked').data("value")
+        size: $('input[name="eraser_size"]:checked').data("value"),
       });
       user_choice.pencil = false;
     }
