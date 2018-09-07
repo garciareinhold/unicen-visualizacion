@@ -25,13 +25,14 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <button id="pencil" type="button" name="button"><img src="img/if_pencil-2_322482.svg"></button>
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <button class="btn btn-info"id="pencil" type="button" data-toggle="button" aria-pressed="false" name="button"><img class="pencil_image" src="img/if_pencil-2_322482.svg"></button>
+
         <label class="btn btn-info active"><input type="radio" name="pencil_size" data-value="20" value="5" id="option1" autocomplete="off" checked> Small</label>
         <label class="btn btn-info"><input type="radio" name="pencil_size" data-value="35" value="10" id="option2" autocomplete="off"> Medium</label>
         <label class="btn btn-info"><input type="radio" name="pencil_size" data-value="45" value="15" id="option3" autocomplete="off"> Large</label>
       </div>
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <div class="btn-group btn-group-toggle mr-3" data-toggle="buttons">
         <label class="btn btn-info active"><input class="pencil_color" data-id="black" type="radio" name="options" id="option1" autocomplete="off" checked> Black</label>
         <label class="btn btn-info"><input class="pencil_color" data-id="blue" type="radio" name="options" id="option2" autocomplete="off"> Blue</label>
         <label class="btn btn-info"><input class="pencil_color" data-id="red" type="radio" name="options" id="option3" autocomplete="off"> Red</label>
@@ -40,13 +41,15 @@
         <label class="btn btn-info"><input class="pencil_color" data-id="green" type="radio" name="options" id="option3" autocomplete="off"> Green</label>
         <label class="btn btn-info"><input class="pencil_color" data-id="yellow" type="radio" name="options" id="option3" autocomplete="off"> Yellow</label>
       </div>
-    <button id="eraser"type="button" name="button"><img src="img/if_eraser_82644.png"></button>
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-info active"><input type="radio"name="eraser_size" data-value="25" value="5" id="option1" autocomplete="off" checked> Small</label>
-        <label class="btn btn-info"><input type="radio" name="eraser_size" data-value="35" value="10" id="option2" autocomplete="off"> Medium</label>
-        <label class="btn btn-info"><input type="radio" name="eraser_size" data-value="45" value="15" id="option3" autocomplete="off"> Large</label>
-        <button class="btn btn-danger" id="clear" type="button" name="button">Clear</button>
+      <div class="btn-group btn-group-toggle mr-3" data-toggle="buttons">
+        <button class="btn btn-warning"id="eraser"type="button" name="button"><img src="img/if_eraser_82644.png"></button>
+
+        <label class="btn btn-warning active"><input type="radio"name="eraser_size" data-value="25" value="5" id="option1" autocomplete="off" checked> Small</label>
+        <label class="btn btn-warning"><input type="radio" name="eraser_size" data-value="35" value="10" id="option2" autocomplete="off"> Medium</label>
+        <label class="btn btn-warning"><input type="radio" name="eraser_size" data-value="45" value="15" id="option3" autocomplete="off"> Large</label>
       </div>
+      <button class="btn btn-danger" id="clear" type="button" name="button">Clear</button>
+
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">

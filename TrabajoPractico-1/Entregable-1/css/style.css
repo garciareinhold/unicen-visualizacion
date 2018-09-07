@@ -6,12 +6,16 @@
 .canvas{
   background-color: white;
 }
-#pencil, #eraser{
+/* #pencil, #eraser{
   background: transparent;
 }
 #pencil, #eraser{
   border: none !important;
-}
+} */
 .dropdown-menu{
   text-align: center;
+}
+.pencil_image{
+  width: 75%;
+  height: 75%;
 }
