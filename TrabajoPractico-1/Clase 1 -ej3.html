@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Clase 1 - Template</title>
+	</head>
+	<body>
+		<h1>Interfaces 17-8</h1>
+		<canvas id="canvas" width="900" height="900"/>
+	</body>
+	<script>
+		var ctx = document.getElementById("canvas").getContext("2d");
+		// ctx.fillStyle= "rgb(233, 15, 163)";
+		// ctx.fillRect(500 ,100, 200, 400);
+		let width=255;
+		let height=255;
+		let imageData= ctx.createImageData(width,height);
+		let r=0;
+		let g=0;
+		let b=0;
+
+
+		for (let i=0; i<width; i++){
+			for (let j=0; j<height; j++){
+				setPixel(imageData, i, j, r,g,b, 255)
+				r=j;
+				g=j;
+				b=j;
+			}
+		}
+
+		function setPixel(imageData, i, j, r, g, b, a){
+			let index= (i+j*imageData.width)*4;
+			imageData.data[index+0]=r;
+			imageData.data[index+1]=g;
+			imageData.data[index+2]=b;
+			imageData.data[index+3]=a;
+		}
+
+		ctx.putImageData(imageData, 200, 100);
+
+	</script>
+</html>

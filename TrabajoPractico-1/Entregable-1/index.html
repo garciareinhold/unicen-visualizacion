@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"  crossorigin="anonymous">
+  <link rel="stylesheet" href="css/bootstrap.min.css"  crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>PixelPick</title>
+</head>
+<body>
+  <nav class="navbar navbar-dark" style="background-color: rgb(0, 50, 242);">
+    <span class="navbar-brand mb-0 h1">PixelPick</span>
+  </nav>
+  <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Draw tools</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Filters</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">Image</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <button id="pencil" type="button" name="button"><img src="img/if_pencil-2_322482.svg"></button>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-info active"><input type="radio" name="pencil_size" data-value="20" value="5" id="option1" autocomplete="off" checked> Small</label>
+        <label class="btn btn-info"><input type="radio" name="pencil_size" data-value="35" value="10" id="option2" autocomplete="off"> Medium</label>
+        <label class="btn btn-info"><input type="radio" name="pencil_size" data-value="45" value="15" id="option3" autocomplete="off"> Large</label>
+      </div>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-info active"><input class="pencil_color" data-id="black" type="radio" name="options" id="option1" autocomplete="off" checked> Black</label>
+        <label class="btn btn-info"><input class="pencil_color" data-id="blue" type="radio" name="options" id="option2" autocomplete="off"> Blue</label>
+        <label class="btn btn-info"><input class="pencil_color" data-id="red" type="radio" name="options" id="option3" autocomplete="off"> Red</label>
+        <label class="btn btn-info"><input class="pencil_color" data-id="orange" type="radio" name="options" id="option3" autocomplete="off"> Orange</label>
+        <label class="btn btn-info"><input class="pencil_color" data-id="purple" type="radio" name="options" id="option3" autocomplete="off"> Purple</label>
+        <label class="btn btn-info"><input class="pencil_color" data-id="green" type="radio" name="options" id="option3" autocomplete="off"> Green</label>
+        <label class="btn btn-info"><input class="pencil_color" data-id="yellow" type="radio" name="options" id="option3" autocomplete="off"> Yellow</label>
+      </div>
+    <button id="eraser"type="button" name="button"><img src="img/if_eraser_82644.png"></button>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-info active"><input type="radio"name="eraser_size" data-value="25" value="5" id="option1" autocomplete="off" checked> Small</label>
+        <label class="btn btn-info"><input type="radio" name="eraser_size" data-value="35" value="10" id="option2" autocomplete="off"> Medium</label>
+        <label class="btn btn-info"><input type="radio" name="eraser_size" data-value="45" value="15" id="option3" autocomplete="off"> Large</label>
+        <button class="btn btn-danger" id="clear" type="button" name="button">Clear</button>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <button class="btn btn-dark" id="restore" type="button" name="button">Original</button>
+        <div class="dropdown">
+          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Brightness
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item brightness" data-value="10" type="button">+10%</button>
+            <button class="dropdown-item brightness" data-value="25" type="button">+25%</button>
+            <button class="dropdown-item brightness" data-value="50" type="button">+50%</button>
+            <button class="dropdown-item brightness" data-value="75" type="button">+75%</button>
+            <button class="dropdown-item brightness" data-value="100" type="button">+100%</button>
+            <button class="dropdown-item brightness" data-value="-10" type="button">-10%</button>
+            <button class="dropdown-item brightness" data-value="-25" type="button">-25%</button>
+            <button class="dropdown-item brightness" data-value="-50" type="button">-50%</button>
+            <button class="dropdown-item brightness" data-value="-75" type="button">-75%</button>
+            <button class="dropdown-item brightness" data-value="-100" type="button">-100%</button>
+          </div>
+        </div>
+        <label class="btn btn-info "><input class="filters-js" data-id="sepia" type="radio" name="options" id="option1" autocomplete="off" >Sepia</label>
+        <label class="btn btn-info"><input class="filters-js" data-id="binarizacion" type="radio" name="options" id="option2" autocomplete="off"> Binarizacion</label>
+        <label class="btn btn-info"><input class="filters-js" data-id="grayscale" type="radio" name="options" id="option3" autocomplete="off">Grayscale</label>
+        <label class="btn btn-info"><input class="filters-js" data-id="negative" type="radio" name="options" id="option3" autocomplete="off"> Negative</label>
+        <label class="btn btn-info"><input class="filtersConvolute-js" data-id="box_blur" type="radio" name="options" id="option3" autocomplete="off"> Box Blur</label>
+        <label class="btn btn-info"><input class="filtersConvolute-js" data-id="edge_detection" type="radio" name="options" id="option3" autocomplete="off"> Edge Detection</label>
+        <label class="btn btn-info"><input class="filtersConvolute-js" data-id="sharpen" type="radio" name="options" id="option3" autocomplete="off"> Sharpen</label>
+        <label class="btn btn-info"><input class="filtersConvolute-js" data-id="focus" type="radio" name="options" id="option3" autocomplete="off"> Focus</label>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
+      <input id="loadPicture-js" type="file">
+      <button class="btn btn-success" id="savePicture-js" type="button" name="button">Save Picture</button>
+    </div>
+
+  <div class="canvas-container">
+    <canvas class="canvas" id="canvas-js" height="600" width="600"></canvas>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.awesome-cursor.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

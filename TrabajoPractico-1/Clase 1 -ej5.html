@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Clase 1 - Template</title>
+	</head>
+	<body>
+		<h1>Interfaces 17-8</h1>
+		<canvas id="canvas" width="900" height="600"/>
+	</body>
+	<script>
+		let ctx = document.getElementById("canvas").getContext("2d");
+		let image1= new Image();
+
+		image1.src="https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg?auto=compress&cs=tinysrgb&h=350";
+		image1.crossOrigin = "anonymous";
+
+		image1.onload= function(){
+			drawMyImage(this);
+		}
+
+		function drawMyImage(image){
+
+			ctx.drawImage(image, 0, 0);//dibujarla en el canvas
+			imageData= ctx.getImageData(0, 0, image.width, image.height);//obtenerla del canvas
+			let a=255;
+
+			for (let i = 0; i < image.width; i++) {
+				for (let j = 0; j < image.height; j++) {
+
+					let index= (i+j*(imageData.width))*4;
+					let r=getPixelRed(imageData, index);
+					let g=getPixelGreen(imageData,index);
+					let b=getPixelBlue(imageData,index);
+					setNegativeFilter(imageData, index, r, g, b, a);
+					setGrayScaleFilter(imageData, index, r, g, b, a);
+				}
+			}
+			ctx.putImageData(imageData, 0, 0);
+		}
+
+		function getPixelRed(imageData, index) {
+			return imageData.data[index+0];
+		}
+		function getPixelGreen(imageData, index) {
+			return imageData.data[index+1];
+		}
+		function getPixelBlue(imageData, index) {
+			return imageData.data[index+2];
+		}
+
+		function setNegativeFilter(imageData, index , r, g, b, a) {
+			imageData.data[index+0]=255-r;
+			imageData.data[index+1]=255-g;
+			imageData.data[index+2]=255-b;
+			imageData.data[index+3]=a;
+		}
+
+		function setGrayScaleFilter(imageData, index , r, g, b, a) {
+			let result= (r+g+b)/3;
+			imageData.data[index+0]=result;
+			imageData.data[index+1]=result;
+			imageData.data[index+2]=result;
+			imageData.data[index+3]=a;
+		}
+
+	</script>
+</html>

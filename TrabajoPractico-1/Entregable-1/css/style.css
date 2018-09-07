@@ -1,0 +1,17 @@
+
+.canvas-container, .tab-pane, body{
+  background-color: rgba(117, 170, 241, 0.71);
+  text-align: center;
+}
+.canvas{
+  background-color: white;
+}
+#pencil, #eraser{
+  background: transparent;
+}
+#pencil, #eraser{
+  border: none !important;
+}
+.dropdown-menu{
+  text-align: center;
+}
