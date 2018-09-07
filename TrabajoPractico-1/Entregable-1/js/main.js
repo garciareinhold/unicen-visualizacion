@@ -44,19 +44,16 @@ document.addEventListener("DOMContentLoaded", function() {
     image.onload = function() {
 
       clear_draw_data();
-
       let canvas = document.getElementById("canvas-js");
-
-
-      let w1= image.width;//imagen que insertas
+      let w1= image.width;//image
       let h1= image.height;
-
-      let w2= canvas.width;//canvas actual
+      let w2= canvas.width;//actual canvas
       let h2= canvas.height;
-
+      //Aspect ratio image
       let a= w1/h1;
 
       if(w1>h1){
+        //modify canvas width and height, with image values of width and height
         canvas.setAttribute("width", w2);
         canvas.setAttribute("height", w2/a);
 	       ctx.drawImage(image, 0, 0, w2, w2/a);
@@ -66,12 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
          canvas.setAttribute("height", h2);
 	        ctx.drawImage(image, 0, 0, h2*a, h2);
       }
-
-
-
       imageData= ctx.getImageData(0, 0, this.width, this.height);
       bindFilters();
-
       //Restoring original image
       $('#restore').click(function (event) {
         event.preventDefault();
@@ -175,8 +168,8 @@ document.addEventListener("DOMContentLoaded", function() {
       case "grayscale":
         filter_choosen = filter_Grayscale;
         break;
-      case "binarizacion":
-        filter_choosen = filter_Binarizacion;
+      case "binarization":
+        filter_choosen = filter_Binarization;
         break;
       case "sepia":
         filter_choosen = filter_Sepia;
@@ -222,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
     imageData.data[index + 3] = a;
   }
 
-  function filter_Binarizacion(imageData, index, r, g, b, a, value) {
+  function filter_Binarization(imageData, index, r, g, b, a, value) {
     (r > 128)
       ? imageData.data[index + 0] = 255
       : imageData.data[index + 0] = 0;
@@ -392,6 +385,8 @@ function convolute(mat) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+
+//object with the user choices of pencil and eraser
   let user_choice = {
     'isDrawing': false,
     'pencil': false,
@@ -407,6 +402,7 @@ function convolute(mat) {
     });
     $('body').css('cursor', '');
 
+//arrays with draw data
   let draw_data = {
     'clickCoordX': [],
     'clickCoordY': [],
