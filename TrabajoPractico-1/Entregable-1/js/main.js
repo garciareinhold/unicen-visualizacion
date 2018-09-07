@@ -78,7 +78,8 @@ document.addEventListener("DOMContentLoaded", function() {
   $('#clear').click(function (event) {
     event.preventDefault();
   let canvas= document.getElementById('canvas-js');
-
+    canvas.setAttribute('width', 800);
+    canvas.setAttribute('height', 400);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     clear_draw_data();
   })
