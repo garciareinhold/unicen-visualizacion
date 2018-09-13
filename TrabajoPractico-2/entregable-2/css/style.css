@@ -1,0 +1,7 @@
+.container, #canvas{
+  border: 1px solid;
+  color: red;
+}
+h1{
+  color: green;
+}
