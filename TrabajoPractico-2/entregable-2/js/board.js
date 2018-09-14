@@ -4,6 +4,7 @@ function GameBoard(posx, posy, width, height, color) {
   this.width= width;
   this.height=height;
   this.color=color;
+  this.lockersCollection=[];
 }
 
 GameBoard.prototype.board = function (ctx) {
@@ -21,13 +22,10 @@ GameBoard.prototype.lockers = function (ctx, radio) {
     pointerY+=radio*2;
 
     for(let x=0; x<7; x++){
-      console.log("entre");
       pointerX+=radio*3;
-      ctx.beginPath();
-      ctx.arc(pointerX, pointerY, radio, 0 , Math.PI*2);
-      ctx.fillStyle="white";
-      ctx.fill();
-      ctx.closePath();
+      let locker= new Locker(pointerX, pointerY, y, x, radio);
+      this.lockersCollection.push(locker);
+      locker.draw(ctx);
     }
     pointerY+=radio*2;
   }

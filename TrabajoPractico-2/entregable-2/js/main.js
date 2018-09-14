@@ -1,64 +1,109 @@
+document.addEventListener("DOMContentLoaded", function() {
+
+const TOTAL_DISKS=42;
+const RADIO_DISK= 5;
+const GAP_BTW_DISKS= 15;
+const COLOR_P_ONE= "red";
+const COLOR_P_TWO= "green";
 let canvas= document.getElementById('canvas');
-
-canvas.onclick= function (event) {
-  console.log(event.layerX);
-  console.log(event.layerY);
-}
-
 let ctx= canvas.getContext("2d");
-
 let gameBoard= new GameBoard(240, 240, 120, 120, "blue");
-gameBoard.board(ctx);
-gameBoard.lockers(ctx, 5);
-
-
-//creacion fichas
 let diskCollection= [];
+let currentDisk= null;
+let beginX=0;
+let beginY=0;
 
-function updateDisk() {
-    for (var i = 0; i < diskCollection.length; i++) {
-      cx.fillStyle = diskCollection[i].color;
-      /*************************************************
 
-      ACA QUEDÉ! tengo que hacer draggeable los disks,
-      definir la dropzone del board y configurar las posiciones
-      de los lockers de acuerdo a mi matriz board, tengo que hacer
-      la matriz board en GameBoard
+gameBoard.board(ctx);
+gameBoard.lockers(ctx, 5.05);
 
-      ***************************************************/
-      cx.fillRect(objetos[i].x, objetos[i].y, objetos[i].width, objetos[i].height);
+
+/////////////////////////////////////////////////////////////////////////////
+
+//DRAWING PLAYER´S DISKS
+
+
+function assignDisksToPlayer(player) {
+    let ini_X;
+    let ini_Y= 295;
+    let pointer_X;
+    let color_player;
+    (player==1)? ini_X=100 : ini_X=410;
+    (player==2)? color_player=COLOR_P_TWO : color_player=COLOR_P_ONE;
+      for (var i = 0; i <TOTAL_DISKS/14 ; i++) {
+        pointer_X= ini_X;
+        for (var j = 0; j < TOTAL_DISKS/6; j++) {
+          let disk= new Disk(pointer_X, ini_Y, RADIO_DISK, color_player);
+          disk.draw(ctx);
+          diskCollection.push(disk);
+          pointer_X+=GAP_BTW_DISKS;
+        }
+        ini_Y+=GAP_BTW_DISKS;
+      }
     }
-}
-let disk1= new Disk(100, 295, 5, "red");
-let disk2= new Disk(115, 295, 5, "red");
-disk1.draw(ctx);
-disk2.draw(ctx);
+assignDisksToPlayer(1);
+assignDisksToPlayer(2);
 
-diskCollection.push(disk1);
-diskCollection.push(disk2);
-
-cv.onmousedown = function(event){
-  for (var i = 0; i < objetos.length; i++){
-  if(objetos[i].x < event.clientX
-  && (objetos[i].width + objetos[i].x > event.clientX)
-  && objetos[i].y < event.clientY
-  && (objetos[i].height + objetos[i].y > event.clientY)){
-  objetoActual = objetos[i];
-  inicioY = event.clientY - objetos[i].y;
-  inicioX = event.clientX - objetos[i].x;
-  break;
+function updateDiskPosition() {
+  ctx.fillStyle= "white";
+  ctx.fillRect(0,0, canvas.width, canvas.height);
+  gameBoard.board(ctx);
+  gameBoard.lockers(ctx, 5.05);
+  for (var i = 0; i < diskCollection.length; i++) {
+    diskCollection[i].draw(ctx);
   }
+
+}
+
+function restoreDisk() {
+  currentDisk.posX= currentDisk.originalPosX;
+  currentDisk.posY= currentDisk.originalPosY;
+  updateDiskPosition();
+}
+/////////////////////////////////////////////////////////////////////////////
+
+//DRAGGING EVENTS
+
+////////////////////////////////////////////////////////////////////////////
+canvas.onmousedown = function (event) {
+  let cut= false;
+  let i=0;
+  while (!cut && i<diskCollection.length) {
+    if(clickOverDisk(diskCollection[i], event)){
+      currentDisk=diskCollection[i];
+      currentDisk.originalPosX= currentDisk.posX;
+      currentDisk.originalPosY= currentDisk.posY;
+      beginX=event.layerX- diskCollection[i].posX;
+      beginY=event.layerY- diskCollection[i].posY;
+      cut=true;
+    }
+    i++;
   }
-};
-cv.onmousemove = function(event){
-if(objetoActual != null){
-  objetoActual.x = event.clientX - inicioX;
-  objetoActual.y = event.clientY - inicioY;
-  actualizar();
+}
+canvas.onmousemove= function (event) {
+  if (currentDisk!=null) {
+    currentDisk.posX= event.layerX-beginX;
+    currentDisk.posY= event.layerY- beginY;
+    updateDiskPosition();
+  }
+}
+canvas.onmouseup = function (event) {
+  // if(currentDisk!=null){
+  //   if(isDropzone(event)){
+  //     if(!dropDisk(event)){
+         restoreDisk();
+        currentDisk=null;
+  //     }
+  //   }
+  // }
+}
+function clickOverDisk(disk, event) {
+  let dx = event.layerX - disk.posX;
+  let dy = event.layerY - disk.posY;
+  let dist = Math.sqrt(dx * dx + dy * dy);
+  return (dist<disk.radio);
 }
 
-};
-cv.onmouseup = function(event){
 
-  objetoActual = null;
-}
+
+})
