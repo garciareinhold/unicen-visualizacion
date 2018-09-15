@@ -1,10 +1,11 @@
-function Locker(posX, posY, matX, matY, radio) {
+function Locker(posX, posY, matX, matY, radio, occupied) {
   this.posX= posX;
   this.posY=posY;
   this.matX=matX;
   this.matY=matY;
   this.radio=radio;
   this.color= "white";
+  this.occupied=occupied;
 }
 
 Locker.prototype.draw = function (ctx, color) {

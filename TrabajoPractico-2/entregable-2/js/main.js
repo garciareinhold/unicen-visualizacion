@@ -14,8 +14,7 @@ let beginX=0;
 let beginY=0;
 
 
-gameBoard.board(ctx);
-gameBoard.lockers(ctx, 5.05);
+gameBoard.createBoard(ctx);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -47,8 +46,7 @@ assignDisksToPlayer(2);
 function updateDiskPosition() {
   ctx.fillStyle= "white";
   ctx.fillRect(0,0, canvas.width, canvas.height);
-  gameBoard.board(ctx);
-  gameBoard.lockers(ctx, 5.05);
+  gameBoard.refreshBoard(ctx)
   for (var i = 0; i < diskCollection.length; i++) {
     diskCollection[i].draw(ctx);
   }
@@ -88,14 +86,17 @@ canvas.onmousemove= function (event) {
   }
 }
 canvas.onmouseup = function (event) {
-  // if(currentDisk!=null){
-  //   if(isDropzone(event)){
-  //     if(!dropDisk(event)){
-         restoreDisk();
-        currentDisk=null;
-  //     }
-  //   }
-  // }
+  if(currentDisk!=null){
+    if(gameBoard.isDropzone(event, currentDisk.radio)){
+      let success= gameBoard.dropDisk(event, currentDisk);
+      console.log(success);
+      (success)? updateDiskPosition() : restoreDisk();
+    }
+    else{
+      restoreDisk();
+    }
+    currentDisk=null;
+  }
 }
 function clickOverDisk(disk, event) {
   let dx = event.layerX - disk.posX;
