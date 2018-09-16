@@ -87,10 +87,16 @@ canvas.onmousemove= function (event) {
 }
 canvas.onmouseup = function (event) {
   if(currentDisk!=null){
-    if(gameBoard.isDropzone(event, currentDisk.radio)){
+    if(gameBoard.isDropzone(event, currentDisk.radio) && !currentDisk.assigned){
       let success= gameBoard.dropDisk(event, currentDisk);
-      console.log(success);
-      (success)? updateDiskPosition() : restoreDisk();
+      if (success) {
+        updateDiskPosition();
+        currentDisk.assigned=true;
+        
+      }
+      else {
+        restoreDisk();
+      }
     }
     else{
       restoreDisk();

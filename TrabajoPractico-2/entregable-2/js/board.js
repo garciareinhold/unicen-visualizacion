@@ -26,13 +26,6 @@ GameBoard.prototype.refreshBoard = function (ctx) {
     this.lockersCollection[i].draw(ctx);
   }
 };
-/*
-  HACER UNA FUNCION QUE CREE EL BOARD Y CREE LOS LOCKERS, DESPUES UNA FUNCION DE
-  REFRESCAR QUE PINTE A CADA LOCKER EN SU POSICION EN VEZ DE VOLVERLOS A CREAR ASI
-  NO SE PIERDE EL BOOLEANO DE OCUPADO
-  --->refreshBoard(vuelve a pintar el board y los lockers en el array de lockers) y createBoard(crea el board y crea los lockers,
-      aqui defino tambien el establishDropzones)
-*/
 
 GameBoard.prototype.createLockers = function (ctx, radio) {
   //120*120 tablero, 22 radios en ancho y 19 en alto , teniendo en cuenta 7x6 casilleros y una separacion entre los mismos de un radio del casillero (circular)
