@@ -4,6 +4,7 @@ function Disk(posx, posy, radio, color) {
   this.radio=radio;
   this.color=color;
   this.assigned=false;
+  this.locker=null;
 }
 
 Disk.prototype.draw = function (ctx) {

@@ -14,7 +14,7 @@ let beginX=0;
 let beginY=0;
 
 
-gameBoard.createBoard(ctx);
+gameBoard.createBoard(ctx, 5.05);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,6 +23,7 @@ gameBoard.createBoard(ctx);
 
 
 function assignDisksToPlayer(player) {
+  //pasar a clase Juego
     let ini_X;
     let ini_Y= 295;
     let pointer_X;
@@ -44,6 +45,7 @@ assignDisksToPlayer(1);
 assignDisksToPlayer(2);
 
 function updateDiskPosition() {
+  //pasar a clase disk
   ctx.fillStyle= "white";
   ctx.fillRect(0,0, canvas.width, canvas.height);
   gameBoard.refreshBoard(ctx)
@@ -54,6 +56,7 @@ function updateDiskPosition() {
 }
 
 function restoreDisk() {
+  //pasar a clase disk
   currentDisk.posX= currentDisk.originalPosX;
   currentDisk.posY= currentDisk.originalPosY;
   updateDiskPosition();
@@ -92,7 +95,8 @@ canvas.onmouseup = function (event) {
       if (success) {
         updateDiskPosition();
         currentDisk.assigned=true;
-        
+        winner();
+
       }
       else {
         restoreDisk();
@@ -105,10 +109,53 @@ canvas.onmouseup = function (event) {
   }
 }
 function clickOverDisk(disk, event) {
+  //pasar a clase disk
   let dx = event.layerX - disk.posX;
   let dy = event.layerY - disk.posY;
   let dist = Math.sqrt(dx * dx + dy * dy);
   return (dist<disk.radio);
+}
+
+
+
+/////////////////////////////////////////////////////////
+
+//FUNCIÓN GANAR, PASARLA A CLASE JUEGO Y APLICAR STRATEGY!!!
+
+////////////////////////////////////////////////////////
+function winner() {
+   if(fourBelow() || fourOnBothSides()){
+     alert("We´ve a winner!!!")
+   }
+}
+
+function fourOnBothSides() {
+  let x= currentDisk.locker.matX;
+  let y= currentDisk.locker.matY;
+
+  let lockersSides= gameBoard.getLockersOnBothSides(x, y);
+  let sum=0;
+  for (var i = 0; i < lockersSides.length; i++) {
+    if(lockersSides[i].value== currentDisk.color){
+      sum++;
+    }
+  }
+  return (sum>=3);
+
+}
+
+function fourBelow() {
+ let x= currentDisk.locker.matX;
+ let y= currentDisk.locker.matY;
+
+ let lockersBelow= gameBoard.getLockersBelow(x, y);
+ let sum=0;
+ for (var i = 0; i < lockersBelow.length; i++) {
+   if(lockersBelow[i].value== currentDisk.color){
+     sum++;
+   }
+ }
+ return (sum>=3);
 }
 
 

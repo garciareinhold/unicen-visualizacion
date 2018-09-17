@@ -14,10 +14,9 @@ GameBoard.prototype.board = function (ctx) {
   ctx.fillRect(this.posX, this.posX, this.width, this.height);
 };
 
-GameBoard.prototype.createBoard = function (ctx) {
+GameBoard.prototype.createBoard = function (ctx, radio) {
   this.board(ctx);
-  this.createLockers(ctx, 5.05);
-
+  this.createLockers(ctx, radio);
 };
 
 GameBoard.prototype.refreshBoard = function (ctx) {
@@ -25,6 +24,43 @@ GameBoard.prototype.refreshBoard = function (ctx) {
   for (var i = 0; i < this.lockersCollection.length; i++) {
     this.lockersCollection[i].draw(ctx);
   }
+};
+
+GameBoard.prototype.getLockersBelow = function (x, y) {
+  let lockers=[];
+  for (let i = 0; i < this.lockersCollection.length; i++) {
+    if(this.lockersCollection[i]!=null && this.lockersCollection[i].matX>x && this.lockersCollection[i].matY==y){
+      lockers.push(this.lockersCollection[i]);
+    }
+  }
+  return lockers;
+};
+
+GameBoard.prototype.getLockersOnBothSides = function (x, y) {
+  let lockers=[];
+  this.getLockersLeft(lockers, x, y);
+  this.getLockersRight(lockers, x, y);
+  return lockers;
+};
+
+GameBoard.prototype.getLockersLeft = function (lockers, x, y) {
+  for (var i = 0; i < this.lockersCollection.length; i++) {
+    if(this.lockersCollection[i]!=null && this.lockersCollection[i].matX == x && this.lockersCollection[i].matY<y){
+      lockers.push(this.lockersCollection[i]);
+    }
+  }
+  return lockers;
+};
+
+
+
+GameBoard.prototype.getLockersRight = function (lockers, x, y) {
+  for (var i = 0; i < this.lockersCollection.length; i++) {
+    if(this.lockersCollection[i]!=null && this.lockersCollection[i].matX == x && this.lockersCollection[i].matY>y){
+      lockers.push(this.lockersCollection[i]);
+    }
+  }
+  return lockers;
 };
 
 GameBoard.prototype.createLockers = function (ctx, radio) {
@@ -74,10 +110,7 @@ GameBoard.prototype.isDropzone = function (event, radio) {
 
 GameBoard.prototype.dropDisk = function (event, currentDisk) {
   let lockersColumn= this.getLockersColumn();
-  console.log(lockersColumn);
-  console.log(this.lockersCollection);
   let lockerFree= this.getFreeLocker(lockersColumn);
-  console.log(lockerFree);
   if(lockerFree!=null){
     this.insertDiskIntoLocker(currentDisk, lockerFree);
     return true;
@@ -99,12 +132,13 @@ GameBoard.prototype.getLockersColumn = function () {
   return lockers;
 };
 
+
+
 GameBoard.prototype.getFreeLocker = function (lockers) {
   let i= lockers.length-1;
   let cut=false;
   let locker=null;
   while(!cut && i>=0){
-    console.log(!lockers[i].occupied);
     if(!(lockers[i].occupied)){
       cut=true;
       locker= lockers[i];
@@ -119,6 +153,6 @@ GameBoard.prototype.getFreeLocker = function (lockers) {
 GameBoard.prototype.insertDiskIntoLocker = function (disk, locker) {
   disk.posX= locker.posX;
   disk.posY= locker.posY;
-  console.log(disk);
-  console.log(locker);
+  disk.locker= locker;
+  locker.value= disk.color;
 };
