@@ -12,7 +12,7 @@ let diskCollection= [];
 let currentDisk= null;
 let beginX=0;
 let beginY=0;
-
+let turn="red";
 
 gameBoard.createBoard(ctx, 5.05);
 
@@ -70,7 +70,7 @@ canvas.onmousedown = function (event) {
   let cut= false;
   let i=0;
   while (!cut && i<diskCollection.length) {
-    if(clickOverDisk(diskCollection[i], event)){
+    if(clickOverDisk(diskCollection[i], event)  && diskCollection[i].color==turn){
       currentDisk=diskCollection[i];
       currentDisk.originalPosX= currentDisk.posX;
       currentDisk.originalPosY= currentDisk.posY;
@@ -96,7 +96,8 @@ canvas.onmouseup = function (event) {
         updateDiskPosition();
         currentDisk.assigned=true;
         winner();
-
+        changeTurn();
+        console.log(turn);
       }
       else {
         restoreDisk();
@@ -156,6 +157,10 @@ function fourBelow() {
    }
  }
  return (sum>=3);
+}
+
+function changeTurn() {
+  (turn==COLOR_P_ONE)? turn=COLOR_P_TWO : turn=COLOR_P_ONE;
 }
 
 
