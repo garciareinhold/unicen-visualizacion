@@ -36,31 +36,124 @@ GameBoard.prototype.getLockersBelow = function (x, y) {
   return lockers;
 };
 
-GameBoard.prototype.getLockersOnBothSides = function (x, y) {
-  let lockers=[];
-  this.getLockersLeft(lockers, x, y);
-  this.getLockersRight(lockers, x, y);
-  return lockers;
+GameBoard.prototype.getLockersOnRight = function (x, y, value) {
+  let sum=0;
+  let i= 1;
+  let cut=false;
+  while (!cut) {
+    let locker= this.getLocker(x, y+i, value);
+    if (locker!=null) {
+      sum++;
+      i++;
+    }
+    else cut=true;
+  }
+  return sum;
 };
 
-GameBoard.prototype.getLockersLeft = function (lockers, x, y) {
-  for (var i = 0; i < this.lockersCollection.length; i++) {
-    if(this.lockersCollection[i]!=null && this.lockersCollection[i].matX == x && this.lockersCollection[i].matY<y){
-      lockers.push(this.lockersCollection[i]);
+GameBoard.prototype.paintBelow = function (currentDisk) {
+alert("winner");
+};
+
+GameBoard.prototype.paintSides = function (currentDisk) {
+  alert("winner");
+
+};
+
+GameBoard.prototype.paintDiagonalLeft = function (currentDisk) {
+  alert("winner");
+
+};
+
+GameBoard.prototype.paintDiagonalRight = function (currentDisk) {
+  alert("winner");
+
+};
+
+GameBoard.prototype.getLockersOnLeft = function (x, y, value) {
+  let sum=0;
+  let i= 1;
+  let cut=false;
+  while (!cut) {
+    let locker= this.getLocker(x, y-i, value);
+    if (locker!=null) {
+      sum++;
+      i++;
     }
-  }
-  return lockers;
+    else cut=true;
+    }
+  return sum;
+};
+
+GameBoard.prototype.getLockersUpRight = function (x, y, value) {
+  let sum=0;
+  let i= 1;
+  let cut=false;
+  while (!cut) {
+    let locker= this.getLocker(x-i, y+i, value);
+    if (locker!=null) {
+      sum++;
+      i++;
+    }
+    else cut=true;
+    }
+  return sum;
+};
+
+GameBoard.prototype.getLockersUpLeft = function (x, y, value) {
+  let sum=0;
+  let i= 1;
+  let cut=false;
+  while (!cut) {
+    let locker= this.getLocker(x-i, y-i, value);
+    if (locker!=null) {
+      sum++;
+      i++;
+    }
+    else cut=true;
+    }
+  return sum;
+};
+
+GameBoard.prototype.getLockersDownLeft = function (x, y, value) {
+  let sum=0;
+  let i= 1;
+  let cut=false;
+  while (!cut) {
+    let locker= this.getLocker(x+i, y-i, value);
+    if (locker!=null) {
+      sum++;
+      i++;
+    }
+    else cut=true;
+    }
+  return sum;
+};
+
+GameBoard.prototype.getLockersDownRight = function (x, y, value) {
+  let sum=0;
+  let i= 1;
+  let cut=false;
+  while (!cut) {
+    let locker= this.getLocker(x+i, y+i, value);
+    if (locker!=null) {
+      sum++;
+      i++;
+    }
+    else cut=true;
+    }
+  return sum;
 };
 
 
-
-GameBoard.prototype.getLockersRight = function (lockers, x, y) {
+GameBoard.prototype.getLocker = function (x, y, value) {
+  let locker= null;
   for (var i = 0; i < this.lockersCollection.length; i++) {
-    if(this.lockersCollection[i]!=null && this.lockersCollection[i].matX == x && this.lockersCollection[i].matY>y){
-      lockers.push(this.lockersCollection[i]);
+    if(this.lockersCollection[i].matX==x && this.lockersCollection[i].matY==y && this.lockersCollection[i].value==value ){
+      locker= this.lockersCollection[i];
     }
   }
-  return lockers;
+  return locker;
 };
 
 GameBoard.prototype.createLockers = function (ctx, radio) {

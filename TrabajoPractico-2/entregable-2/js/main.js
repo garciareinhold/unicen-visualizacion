@@ -17,11 +17,18 @@ let turn="red";
 gameBoard.createBoard(ctx, 5.05);
 
 
+////////////////////////////////////////////////////////////////////////////
+
+//INSERT IMAGE INTO DISK
+
+///////////////////////////////////////////////////////////////////////////
+
+
 /////////////////////////////////////////////////////////////////////////////
 
 //DRAWING PLAYER´S DISKS
 
-
+////////////////////////////////////////////////////////////////////////////
 function assignDisksToPlayer(player) {
   //pasar a clase Juego
     let ini_X;
@@ -61,6 +68,7 @@ function restoreDisk() {
   currentDisk.posY= currentDisk.originalPosY;
   updateDiskPosition();
 }
+
 /////////////////////////////////////////////////////////////////////////////
 
 //DRAGGING EVENTS
@@ -97,7 +105,6 @@ canvas.onmouseup = function (event) {
         currentDisk.assigned=true;
         winner();
         changeTurn();
-        console.log(turn);
       }
       else {
         restoreDisk();
@@ -118,31 +125,49 @@ function clickOverDisk(disk, event) {
 }
 
 
-
 /////////////////////////////////////////////////////////
 
 //FUNCIÓN GANAR, PASARLA A CLASE JUEGO Y APLICAR STRATEGY!!!
 
 ////////////////////////////////////////////////////////
 function winner() {
-   if(fourBelow() || fourOnBothSides()){
-     alert("We´ve a winner!!!")
-   }
+  if(fourBelow()){ gameBoard.paintBelow(currentDisk)}
+  else if(fourOnSides()){ gameBoard.paintSides(currentDisk)}
+  else if (fourOnDiagonalRight()) {gameBoard.paintDiagonalRight(currentDisk)}
+  else if (fourOnDiagonalLeft()) {gameBoard.paintDiagonalLeft(currentDisk)}
 }
 
-function fourOnBothSides() {
+function fourOnDiagonalRight() {
   let x= currentDisk.locker.matX;
   let y= currentDisk.locker.matY;
+  let value= currentDisk.color;
+  let disksDiagonalRight=1;
+  disksDiagonalRight += gameBoard.getLockersUpRight(x, y, value);
+  disksDiagonalRight+= gameBoard.getLockersDownLeft(x, y, value);
+  return (disksDiagonalRight>=4);
+}
 
-  let lockersSides= gameBoard.getLockersOnBothSides(x, y);
-  let sum=0;
-  for (var i = 0; i < lockersSides.length; i++) {
-    if(lockersSides[i].value== currentDisk.color){
-      sum++;
-    }
-  }
-  return (sum>=3);
+function fourOnDiagonalLeft() {
+  let x= currentDisk.locker.matX;
+  let y= currentDisk.locker.matY;
+  let value= currentDisk.color;
+  let disksDiagonalLeft=1;
 
+  disksDiagonalLeft+= gameBoard.getLockersUpLeft(x, y, value);
+  disksDiagonalLeft+= gameBoard.getLockersDownRight(x, y, value);
+
+
+  return (disksDiagonalLeft>=4);
+}
+
+function fourOnSides() {
+  let x= currentDisk.locker.matX;
+  let y= currentDisk.locker.matY;
+  let value= currentDisk.color;
+  let disks=1;
+  disks += gameBoard.getLockersOnRight(x, y, value);
+  disks+= gameBoard.getLockersOnLeft(x, y, value);
+  return (disks>=4);
 }
 
 function fourBelow() {
@@ -154,6 +179,9 @@ function fourBelow() {
  for (var i = 0; i < lockersBelow.length; i++) {
    if(lockersBelow[i].value== currentDisk.color){
      sum++;
+   }
+   else{
+     sum=0;
    }
  }
  return (sum>=3);
