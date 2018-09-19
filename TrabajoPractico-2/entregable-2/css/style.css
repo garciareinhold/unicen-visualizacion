@@ -1,7 +1,14 @@
-.container, #canvas{
-  border: 1px solid;
-  color: red;
-}
+
 h1{
-  color: green;
+font-family: 'Barrio', cursive;
+text-shadow: 4px 3px 0px orange, 9px 8px 0px rgba(0,0,0,0.3);
+font-size: 100px;
+}
+
+body{
+  background-color:orange;
+}
+
+.container, .header{
+  text-align: center;
 }

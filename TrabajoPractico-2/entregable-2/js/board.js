@@ -7,11 +7,29 @@ function GameBoard(posx, posy, width, height, color) {
   this.lockersCollection=[];
   this.dropzones=[];
   this.activeZone=null;
+  this.radio= 8;
 }
 
 GameBoard.prototype.board = function (ctx) {
+  ctx.beginPath();
+  ctx.moveTo(this.posX,this.posY+this.radio);
+  ctx.lineTo(this.posX,this.posY+this.height-this.radio);
+  ctx.quadraticCurveTo(this.posX,this.posY+this.height,this.posX+this.radio,this.posY+this.height);
+  ctx.lineTo(this.posX+this.width-this.radio,this.posY+this.height);
+  ctx.quadraticCurveTo(this.posX+this.width,this.posY+this.height,this.posX+this.width,this.posY+this.height-this.radio);
+  ctx.lineTo(this.posX+this.width,this.posY+this.radio);
+  ctx.quadraticCurveTo(this.posX+this.width,this.posY,this.posX+this.width-this.radio,this.posY);
+  ctx.lineTo(this.posX+this.radio,this.posY);
+  ctx.quadraticCurveTo(this.posX,this.posY,this.posX,this.posY+7);
   ctx.fillStyle= this.color;
-  ctx.fillRect(this.posX, this.posX, this.width, this.height);
+  ctx.save();
+  ctx.shadowColor = 'black';
+  ctx.shadowBlur = 15;
+  ctx.shadowOffsetX = 15;
+  ctx.shadowOffsetY = 15;
+  ctx.fill();
+  ctx.restore();
+  // ctx.fillRect(this.posX, this.posY, this.width, this.height);
 };
 
 GameBoard.prototype.createBoard = function (ctx, radio) {
@@ -161,16 +179,16 @@ GameBoard.prototype.createLockers = function (ctx, radio) {
   let pointerX;
   let pointerY=this.posY;
   for (let y=0; y<6; y++){
-    pointerX=this.posX;
-    pointerY+=radio*2;
+    pointerX=this.posX-16;
+    pointerY+=17;
 
     for(let x=0; x<7; x++){
-      pointerX+=radio*3;
+      pointerX+=33;
       let locker= new Locker(pointerX, pointerY, y, x, radio);
       this.lockersCollection.push(locker);
       locker.draw(ctx);
     }
-    pointerY+=radio*2;
+    pointerY+=17;
   }
   this.establishDropzones();
 };

@@ -1,20 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 const TOTAL_DISKS=42;
-const RADIO_DISK= 5;
-const GAP_BTW_DISKS= 15;
+const RADIO_DISK= 13.75;
+const GAP_BTW_DISKS= 23;
 const COLOR_P_ONE= "red";
 const COLOR_P_TWO= "green";
 let canvas= document.getElementById('canvas');
 let ctx= canvas.getContext("2d");
-let gameBoard= new GameBoard(240, 240, 120, 120, "blue");
+let gameBoard= new GameBoard(280, 130, 232, 204, "blue");
 let diskCollection= [];
 let currentDisk= null;
 let beginX=0;
 let beginY=0;
 let turn="red";
 
-gameBoard.createBoard(ctx, 5.05);
+
+  gameBoard.createBoard(ctx,15);
+  assignDisksToPlayer(1);
+  assignDisksToPlayer(2);
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -22,7 +25,6 @@ gameBoard.createBoard(ctx, 5.05);
 //INSERT IMAGE INTO DISK
 
 ///////////////////////////////////////////////////////////////////////////
-
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -32,10 +34,10 @@ gameBoard.createBoard(ctx, 5.05);
 function assignDisksToPlayer(player) {
   //pasar a clase Juego
     let ini_X;
-    let ini_Y= 295;
+    let ini_Y= 265;
     let pointer_X;
     let color_player;
-    (player==1)? ini_X=100 : ini_X=410;
+    (player==1)? ini_X=50 : ini_X=586;
     (player==2)? color_player=COLOR_P_TWO : color_player=COLOR_P_ONE;
       for (var i = 0; i <TOTAL_DISKS/14 ; i++) {
         pointer_X= ini_X;
@@ -48,12 +50,11 @@ function assignDisksToPlayer(player) {
         ini_Y+=GAP_BTW_DISKS;
       }
     }
-assignDisksToPlayer(1);
-assignDisksToPlayer(2);
+
 
 function updateDiskPosition() {
   //pasar a clase disk
-  ctx.fillStyle= "white";
+  ctx.fillStyle= "orange";
   ctx.fillRect(0,0, canvas.width, canvas.height);
   gameBoard.refreshBoard(ctx)
   for (var i = 0; i < diskCollection.length; i++) {
@@ -75,10 +76,12 @@ function restoreDisk() {
 
 ////////////////////////////////////////////////////////////////////////////
 canvas.onmousedown = function (event) {
+  console.log(event.pageX);
+  console.log(event.pageY);
   let cut= false;
   let i=0;
   while (!cut && i<diskCollection.length) {
-    if(clickOverDisk(diskCollection[i], event)  && diskCollection[i].color==turn){
+    if(clickOverDisk(diskCollection[i], event)  && diskCollection[i].color==turn && diskCollection[i].assigned==false){
       currentDisk=diskCollection[i];
       currentDisk.originalPosX= currentDisk.posX;
       currentDisk.originalPosY= currentDisk.posY;
@@ -131,7 +134,7 @@ function clickOverDisk(disk, event) {
 
 ////////////////////////////////////////////////////////
 function winner() {
-  if(fourBelow()){ gameBoard.paintBelow(currentDisk)}
+  if(fourBelow()){ gameBoard.paintBelow(currentDisk);}
   else if(fourOnSides()){ gameBoard.paintSides(currentDisk)}
   else if (fourOnDiagonalRight()) {gameBoard.paintDiagonalRight(currentDisk)}
   else if (fourOnDiagonalLeft()) {gameBoard.paintDiagonalLeft(currentDisk)}
@@ -175,7 +178,7 @@ function fourBelow() {
  let y= currentDisk.locker.matY;
 
  let lockersBelow= gameBoard.getLockersBelow(x, y);
- let sum=0;
+ let sum=1;
  for (var i = 0; i < lockersBelow.length; i++) {
    if(lockersBelow[i].value== currentDisk.color){
      sum++;
@@ -184,7 +187,7 @@ function fourBelow() {
      sum=0;
    }
  }
- return (sum>=3);
+ return (sum>=4);
 }
 
 function changeTurn() {
