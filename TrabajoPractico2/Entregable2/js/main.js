@@ -118,6 +118,23 @@ canvas.onmouseup = function (event) {
     currentDisk=null;
   }
 }
+
+canvas.onmouseleave = function () {
+  if(currentDisk!=null){
+    restoreDisk();
+    currentDisk= null;
+  }
+}
+
+document.getElementById('reset').onclick= function (event) {
+  event.preventDefault();
+  diskCollection=[];
+  gameBoard.createBoard(ctx,15);
+  assignDisksToPlayer(1);
+  assignDisksToPlayer(2);
+  currentDisk= null;
+}
+
 function clickOverDisk(disk, event) {
   //pasar a clase disk
   let dx = event.layerX - disk.posX;

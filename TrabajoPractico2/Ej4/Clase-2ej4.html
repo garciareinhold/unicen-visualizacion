@@ -3,61 +3,53 @@
 <head>
 </head>
 <body>
-<canvas width="400" height="300" id="lienzo"></canvas>
+<canvas id="canvas" width="400" height="300" id="lienzo"></canvas>
 <script>
-var cv, cx, objetos, objetoActual = null;
-var inicioX = 0, inicioY =0;
-function actualizar (){
-	cx.fillStyle = '#f0f0f0';
-	cx.fillRect(0,0, 400, 300);
-for (var i = 0; i < objetos.length; i++){
-cx.fillStyle = objetos[i].color;
-cx.fillRect(objetos[i].x, objetos[i].y, objetos[i].width, objetos[i].height);
+
+let circle= {
+	'x': 75,
+	'y': 75,
+	'radio': 5
 }
+let circle2={
+	'x': 200,
+	'y':200,
+	'radio': 15
 }
-window.onload = function(){
-objetos = [];
-cv = document.getElementById('lienzo');
-cx = cv.getContext('2d');
-//Agregar ojetos de prueba
-objetos.push({
-	x: 0, y: 0,
-	width: 100, height: 200,
-	color: '#00f'
-	});
-	objetos.push({
-	x: 300, y: 150,
-	width: 50, height: 100,
-	color: '#f00'
-	});
-	actualizar();
 
-	cv.onmousedown = function(event){
-		for (var i = 0; i < objetos.length; i++){
-		if(objetos[i].x < event.clientX
-		&& (objetos[i].width + objetos[i].x > event.clientX)
-		&& objetos[i].y < event.clientY
-		&& (objetos[i].height + objetos[i].y > event.clientY)){
-		objetoActual = objetos[i];
-		inicioY = event.clientY - objetos[i].y;
-		inicioX = event.clientX - objetos[i].x;
-		break;
-		}
-		}
-	};
-	cv.onmousemove = function(event){
-	if(objetoActual != null){
-		objetoActual.x = event.clientX - inicioX;
-		objetoActual.y = event.clientY - inicioY;
-		actualizar();
-	}
+let canvas= document.getElementById('canvas');
+let ctx= canvas.getContext('2d');
+ctx.beginPath();
+ctx.arc(circle2.x, circle2.y,circle2.radio, 0, Math.PI*2);
+ctx.fillStyle = "red";
+ctx.fill();
+ctx.closePath();
 
-	};
-	cv.onmouseup = function(event){
+var img=new Image();
 
-		objetoActual = null;
-	}
+img.src= 'images/kk.png';
+
+function drawBall() {
+
+    // default gCO is source-over
+    ctx.drawImage(img,circle.x-img.width/2,circle.y-img.height/2, img.width*.7, img.height*.7);
+    // now we change the gCO
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y,circle.radio, 0, Math.PI*2);
+		ctx.fillStyle= "rgba(121, 21, 242, 0)";
+    ctx.fill();
+    // reset to default
+    // closePath is useless here
+    ctx.closePath();
+}
+canvas.onmousemove= function event(event) {
+	console.log(event.layerX);
+	circle.x= event.layerX;
+	circle.y= event.layerY;
+	drawBall();
+
 };
+
 </script>
 </body>
 </html>﻿
