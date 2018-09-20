@@ -201,7 +201,7 @@ function fourBelow() {
      sum++;
    }
    else{
-     sum=0;
+     sum=1;
    }
  }
  return (sum>=4);

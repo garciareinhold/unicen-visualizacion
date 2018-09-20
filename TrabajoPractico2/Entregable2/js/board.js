@@ -152,17 +152,15 @@ GameBoard.prototype.getLockersDownRight = function (x, y, value) {
   let sum=0;
   let i= 1;
   let cut=false;
-  let lockers= [];
   while (!cut) {
     let locker= this.getLocker(x+i, y+i, value);
     if (locker!=null) {
       sum++;
       i++;
-      lockers.push(locker);
     }
     else cut=true;
     }
-  return lockers;
+  return sum;
 };
 
 
