@@ -92,17 +92,15 @@ GameBoard.prototype.getLockersOnLeft = function (x, y, value) {
   let sum=0;
   let i= 1;
   let cut=false;
-  let lockers=[];
   while (!cut) {
     let locker= this.getLocker(x, y-i, value);
     if (locker!=null) {
       sum++;
       i++;
-      lockers.push(locker);
     }
     else cut=true;
     }
-  return lockers;
+  return sum;
 };
 
 GameBoard.prototype.getLockersUpRight = function (x, y, value) {
@@ -201,7 +199,7 @@ GameBoard.prototype.establishDropzones = function () {
   for (var i = 0; i < 7; i++) {
     let locker= this.lockersCollection[i];
     let iniX= locker.posX-locker.radio;
-    let finX= locker.posX+locker.radio - 10; //dispersion value 
+    let finX= locker.posX+locker.radio - 10; //dispersion value
     let iniY= locker.posY-locker.radio*4;
     let finY= locker.posY;
     let column= locker.matY
