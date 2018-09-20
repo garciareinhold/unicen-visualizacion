@@ -130,6 +130,7 @@ document.getElementById('reset').onclick= function (event) {
   event.preventDefault();
   diskCollection=[];
   gameBoard.createBoard(ctx,15);
+  gameBoard.resetLockers();
   assignDisksToPlayer(1);
   assignDisksToPlayer(2);
   currentDisk= null;

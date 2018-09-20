@@ -269,3 +269,10 @@ GameBoard.prototype.insertDiskIntoLocker = function (disk, locker) {
   disk.locker= locker;
   locker.value= disk.color;
 };
+
+GameBoard.prototype.resetLockers = function () {
+  for (var i = 0; i < this.lockersCollection.length; i++) {
+    this.lockersCollection[i].value= null;
+    this.lockersCollection[i].occupied= false;
+  }
+};
