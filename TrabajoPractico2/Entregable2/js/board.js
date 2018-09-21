@@ -70,21 +70,22 @@ GameBoard.prototype.getLockersOnRight = function (x, y, value) {
 };
 
 GameBoard.prototype.paintBelow = function (currentDisk) {
-alert("winner");
+  alert("winner:" +currentDisk.color);
 };
 
 GameBoard.prototype.paintSides = function (currentDisk) {
-  alert("winner");
+  alert("winner:" +currentDisk.color);
 
 };
 
 GameBoard.prototype.paintDiagonalLeft = function (currentDisk) {
-  alert("winner");
+  alert("winner:" +currentDisk.color);
 
 };
 
 GameBoard.prototype.paintDiagonalRight = function (currentDisk) {
-  alert("winner");
+  alert("winner:" +currentDisk.color);
+
 
 };
 

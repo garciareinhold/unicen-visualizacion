@@ -29,14 +29,15 @@ var img=new Image();
 
 img.src= 'images/kk.png';
 
+console.log(img);
 function drawBall() {
 
     // default gCO is source-over
-    ctx.drawImage(img,circle.x-img.width/2,circle.y-img.height/2, img.width*.7, img.height*.7);
+    ctx.drawImage(img,circle.x-img.width/2,circle.y-img.height/2, img.width, img.height);
     // now we change the gCO
     ctx.beginPath();
     ctx.arc(circle.x, circle.y,circle.radio, 0, Math.PI*2);
-		ctx.fillStyle= "rgba(121, 21, 242, 0)";
+		ctx.fillStyle= "red";
     ctx.fill();
     // reset to default
     // closePath is useless here

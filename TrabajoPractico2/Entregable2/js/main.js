@@ -19,13 +19,54 @@ let turn="red";
   assignDisksToPlayer(1);
   assignDisksToPlayer(2);
 
+document.getElementById('nameP1').onclick= function (event) {
+  event.preventDefault();
+  let st= document.getElementById('p1').value;
+  document.getElementById('spanP1').innerHTML=st;
+}
+document.getElementById('nameP2').onclick= function (event) {
+  event.preventDefault();
+  let st= document.getElementById('p2').value;
+  document.getElementById('spanP2').innerHTML=st;
+}
 
 ////////////////////////////////////////////////////////////////////////////
 
 //INSERT IMAGE INTO DISK
 
 ///////////////////////////////////////////////////////////////////////////
+$('.images').click("bind", function (event) {
+  event.preventDefault();
+  let value= $(this).data('value');
+  let imgSource=  $(this).data('src');
+  let disks= getDisksWithValue(value);
+  for (var i = 0; i < disks.length; i++) {
+    let newImage= new Image();
+    newImage.src= imgSource;
+    disks[i].image= newImage;
+  }
+  disks[disks.length-1].onload= updateDiskPosition();
+})
 
+function getDisksWithValue(value) {
+  let disks= [];
+  for (var i = 0; i < diskCollection.length; i++) {
+    if(diskCollection[i].color==value){
+      disks.push(diskCollection[i]);
+    }
+  }
+  return disks;
+}
+
+$('.clear').click("bind", function (event) {
+  event.preventDefault();
+  let value= $(this).data('value');
+  let disks= getDisksWithValue(value);
+  for (var i = 0; i < disks.length; i++) {
+    disks[i].image=null;
+  }
+  updateDiskPosition();
+})
 /////////////////////////////////////////////////////////////////////////////
 
 //DRAWING PLAYER´S DISKS
