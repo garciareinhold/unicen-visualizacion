@@ -8,26 +8,7 @@ font-size: 100px;
 body{
   background-color:orange;
 }
-.header, h1{
-  margin: 0;
-}
-.canvas-css, .player1, .player2{
-  /* border:solid 4px black; */
-   display:inline-block;
-
-}
 
 .container, .header{
   text-align: center;
-}
-
-.player1{
-  float: left;
-}
-.player2{
-  float: right;
-}
-
-#reset{
-  clear: both;
 }

@@ -1,0 +1,33 @@
+
+h1{
+font-family: 'Barrio', cursive;
+text-shadow: 4px 3px 0px orange, 9px 8px 0px rgba(0,0,0,0.3);
+font-size: 100px;
+}
+
+body{
+  background-color:orange;
+}
+.header, h1{
+  margin: 0;
+}
+.canvas-css, .player1, .player2{
+  /* border:solid 4px black; */
+   display:inline-block;
+
+}
+
+.container, .header{
+  text-align: center;
+}
+
+.player1{
+  float: left;
+}
+.player2{
+  float: right;
+}
+
+#reset{
+  clear: both;
+}
