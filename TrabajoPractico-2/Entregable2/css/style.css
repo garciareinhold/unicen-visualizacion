@@ -31,3 +31,39 @@ body{
 #reset{
   clear: both;
 }
+p span, p, button{
+font-family: 'Gloria Hallelujah', cursive;
+}
+p {
+  font-size: 200%;
+}
+.btn1{
+  font-size: 50%;
+}
+input{
+  background-color: transparent;
+}
+
+.btn1 {
+  border-radius: 6px;
+  border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        display: inline-block;
+        /* font-size: 16px; */
+        transition-duration: 0.4s;
+        cursor: pointer;
+  }
+  .btn1 {
+        background-color: rgba(255, 105, 0, 0.5);
+        color: black;
+  }
+  .btn1:hover {
+     background-color: rgba(255, 105, 0, 1);
+     color: white;
+}
+
+.player1{
+  display: block;
+}
