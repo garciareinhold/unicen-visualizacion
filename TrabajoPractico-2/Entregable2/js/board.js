@@ -29,7 +29,6 @@ GameBoard.prototype.board = function (ctx) {
   ctx.shadowOffsetY = 15;
   ctx.fill();
   ctx.restore();
-  // ctx.fillRect(this.posX, this.posY, this.width, this.height);
 };
 
 GameBoard.prototype.createBoard = function (ctx, radio) {
@@ -74,8 +73,17 @@ GameBoard.prototype.paintBelow = function (currentDisk) {
 };
 
 GameBoard.prototype.paintSides = function (currentDisk) {
-  alert("winner:" +currentDisk.color);
+  let disks=[];
+  let j=1;
+  for (var i = 0; i < this.lockersCollection.length; i++) {
+    if (this.lockersCollection[i].posX+j== currentDisk.posX) {
+      disks.push(this.lockersCollection[i]);
+      j++;
+    }
+    else {
 
+    }
+  }
 };
 
 GameBoard.prototype.paintDiagonalLeft = function (currentDisk) {

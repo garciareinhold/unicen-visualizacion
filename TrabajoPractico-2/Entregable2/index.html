@@ -16,9 +16,9 @@
 
   <div class="container" id="canvas-container">
     <div class="player1">
-      <p><span id="spanP1">Player 1</span></p>
-      <p><input id="p1"type="text" name="" value=""></p>
-      <button class="btn btn-warning" id="nameP1" type="button" name="button"> Set Name</button>
+      <p id="p1">Player 1</p>
+      <p><input id="spanP1"type="text" name="" value=""></p>
+      <button class="btn1" id="nameP1" type="button" name="button"> Set Name</button>
       <p>WINS: <span id="contadorP1-js" class="contadorP1-css">0</span></p>
       <p><img class="images" data-src="images/1.png" data-value="red" src="images/1.png" alt=""><img class="images" data-src="images/2.png" data-value="red" src="images/2.png" alt=""><img class="images" data-src="images/3.png" data-value="red" src="images/3.png" alt=""><img class="images" data-src="images/4.png" data-value="red" src="images/4.png" alt=""><img class="images" data-src="images/5.png" data-value="red" src="images/5.png" alt=""><img class="images" data-src="images/6.png" data-value="red" src="images/6.png" alt=""></p>
       <p> <button class="clear btn1"type="button" data-value="red" name="button">Clear</button>
@@ -28,22 +28,25 @@
       <canvas id="canvas" width="800" height="400"></canvas>
     </div>
     <div class="player2">
-      <p><span id="spanP2"> Player 1</span></p>
-      <p><input id="p2"type="text" name="" value=""></p>
-      <button class="btn btn-warning" id="nameP2"type="button" name="button">Set name</button>
-      <p>WINS: <span id="contadorP1-js" class="contadorP1-css">0</span></p>
+      <p id="p2">Player 2</p>
+      <p><input id="spanP2"type="text" name="" value=""></p>
+      <button class="btn1" id="nameP2"type="button" name="button">Set name</button>
+      <p>WINS: <span id="contadorP2-js" class="contadorP1-css">0</span></p>
       <p><img class="images" data-src="images/1.png" data-value="green" id="prueba"src="images/1.png" alt=""><img class="images" data-src="images/2.png" data-value="green" src="images/2.png" alt=""><img class="images" data-src="images/3.png" data-value="green" src="images/3.png" alt=""><img class="images" data-src="images/4.png" data-value="green" src="images/4.png" alt=""><img class="images" data-src="images/5.png" data-value="green" src="images/5.png" alt=""><img class="images" data-src="images/6.png" data-value="green" data-value="" src="images/6.png" alt=""></p>
       <p> <button class="clear btn1"type="button" data-value="green" name="button">Clear</button>
       </p>
     </div>
   </div>
+  <footer class="footer">
+    <button class="btn2"id="reset"type="" name="button">RESET</button>
 
-  <button id="reset"type="button" name="button">reset</button>
+  </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
   <script src="js/jquery.awesome-cursor.js"></script>
   <script type="text/javascript" src="js/locker.js"></script>
   <script type="text/javascript" src="js/board.js"></script>
   <script type="text/javascript" src="js/disk.js"></script>
+  <script type="text/javascript" src="js/player.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </body>
 

@@ -13,6 +13,8 @@ let currentDisk= null;
 let beginX=0;
 let beginY=0;
 let turn="red";
+let player1= new Player("red");
+let player2= new Player("blue");
 
 
   gameBoard.createBoard(ctx,15);
@@ -21,13 +23,18 @@ let turn="red";
 
 document.getElementById('nameP1').onclick= function (event) {
   event.preventDefault();
-  let st= document.getElementById('p1').value;
-  document.getElementById('spanP1').innerHTML=st;
+  let inputData= document.getElementById('spanP1')
+  let st= inputData.value;
+  document.getElementById('p1').innerHTML=st;
+  inputData.value="";
+
 }
 document.getElementById('nameP2').onclick= function (event) {
   event.preventDefault();
-  let st= document.getElementById('p2').value;
-  document.getElementById('spanP2').innerHTML=st;
+  let inputData= document.getElementById('spanP2')
+  let st= inputData.value;
+  document.getElementById('p2').innerHTML=st;
+  inputData.value="";
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -146,7 +153,7 @@ canvas.onmouseup = function (event) {
       if (success) {
         updateDiskPosition();
         currentDisk.assigned=true;
-        winner();
+        if(winner()){ setWinner()}
         changeTurn();
       }
       else {
@@ -167,8 +174,7 @@ canvas.onmouseleave = function () {
   }
 }
 
-document.getElementById('reset').onclick= function (event) {
-  event.preventDefault();
+function reset(event) {
   diskCollection=[];
   gameBoard.createBoard(ctx,15);
   gameBoard.resetLockers();
@@ -176,6 +182,7 @@ document.getElementById('reset').onclick= function (event) {
   assignDisksToPlayer(2);
   currentDisk= null;
 }
+document.getElementById('reset').onclick= reset;
 
 function clickOverDisk(disk, event) {
   //pasar a clase disk
@@ -192,10 +199,53 @@ function clickOverDisk(disk, event) {
 
 ////////////////////////////////////////////////////////
 function winner() {
-  if(fourBelow()){ gameBoard.paintBelow(currentDisk);}
-  else if(fourOnSides()){ gameBoard.paintSides(currentDisk)}
-  else if (fourOnDiagonalRight()) {gameBoard.paintDiagonalRight(currentDisk)}
-  else if (fourOnDiagonalLeft()) {gameBoard.paintDiagonalLeft(currentDisk)}
+  if(fourBelow() || fourOnSides() || fourOnDiagonalLeft() || fourOnDiagonalRight()){
+    return true
+  }
+  else{
+     return false;
+  }
+}
+
+
+
+function setWinner() {
+  let winner=null;
+  if (currentDisk.color=="red"){
+    winner=player1;
+    player1.wins+=1;
+    document.getElementById('contadorP1-js').innerHTML= player1.wins;
+  }
+  else{
+    winner=player2;
+    player2.wins+=1;
+    document.getElementById('contadorP2-js').innerHTML= player2.wins;
+  }
+  console.log(winner);
+  let temporizador=setInterval(function () {
+  remarkWinner(winner);
+},150);
+  setTimeout(function () {
+    clearInterval(temporizador);
+    let elem= "";
+    (winner.color=="red")? elem= "p1" : elem= "p2";
+    document.getElementById(elem).classList.remove("remarked");
+    reset();
+  }, 5000);
+
+
+}
+function remarkWinner(winner) {
+  console.log("entre");
+  console.log(winner);
+  let elem= null;
+  if (winner.color=="red"){
+     elem=document.getElementById('p1');
+  }
+  else{
+     elem=document.getElementById('p2');
+  }
+  elem.classList.toggle("remarked");
 }
 
 function fourOnDiagonalRight() {
