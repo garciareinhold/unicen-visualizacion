@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css?family=Barrio|Ewert|Gloria+Hallelujah|Hanalei+Fill|Permanent+Marker|Press+Start+2P|Rock+Salt|Sigmar+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Indie+Flower|Poor+Story" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"  crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/style.css">
   <title>Line up 4!</title>
 </head>
@@ -18,6 +20,9 @@
     <div class="player1">
       <p id="p1">Player 1</p>
       <p><input id="spanP1"type="text" name="" value=""></p>
+      <div id="warningP1">
+
+      </div>
       <button class="btn1" id="nameP1" type="button" name="button"> Set Name</button>
       <p>WINS: <span id="contadorP1-js" class="contadorP1-css">0</span></p>
       <p><img class="images" data-src="images/1.png" data-value="red" src="images/1.png" alt=""><img class="images" data-src="images/2.png" data-value="red" src="images/2.png" alt=""><img class="images" data-src="images/3.png" data-value="red" src="images/3.png" alt=""><img class="images" data-src="images/4.png" data-value="red" src="images/4.png" alt=""><img class="images" data-src="images/5.png" data-value="red" src="images/5.png" alt=""><img class="images" data-src="images/6.png" data-value="red" src="images/6.png" alt=""></p>
@@ -30,6 +35,9 @@
     <div class="player2">
       <p id="p2">Player 2</p>
       <p><input id="spanP2"type="text" name="" value=""></p>
+      <div id="warningP2">
+
+      </div>
       <button class="btn1" id="nameP2"type="button" name="button">Set name</button>
       <p>WINS: <span id="contadorP2-js" class="contadorP1-css">0</span></p>
       <p><img class="images" data-src="images/1.png" data-value="green" id="prueba"src="images/1.png" alt=""><img class="images" data-src="images/2.png" data-value="green" src="images/2.png" alt=""><img class="images" data-src="images/3.png" data-value="green" src="images/3.png" alt=""><img class="images" data-src="images/4.png" data-value="green" src="images/4.png" alt=""><img class="images" data-src="images/5.png" data-value="green" src="images/5.png" alt=""><img class="images" data-src="images/6.png" data-value="green" data-value="" src="images/6.png" alt=""></p>
@@ -37,9 +45,14 @@
       </p>
     </div>
   </div>
+  <div id="modalWin" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  </div>
+
+</div>
   <footer class="footer">
     <button class="btn2"id="reset"type="" name="button">RESET</button>
-
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
   <script src="js/jquery.awesome-cursor.js"></script>
