@@ -87,7 +87,7 @@ $('.images').click("bind", function (event) {
   else {
     let playerWarning;
     (value=="red")? playerWarning= "warningP1" : playerWarning="warningP2";
-    document.getElementById(playerWarning).innerHTML="<p>Can´t pick that!</p>";
+    document.getElementById(playerWarning).innerHTML="<p>Can´t pick that one!</p>";
 
     setTimeout(function () {
         document.getElementById('warningP1').innerHTML="";
@@ -238,6 +238,8 @@ function reset(event) {
   assignDisksToPlayer(1);
   assignDisksToPlayer(2);
   currentDisk= null;
+  player1.image=null;
+  player2.image=null;
 }
 document.getElementById('reset').onclick= reset;
 
