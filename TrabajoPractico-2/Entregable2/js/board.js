@@ -185,6 +185,7 @@ GameBoard.prototype.getLocker = function (x, y, value) {
 
 GameBoard.prototype.createLockers = function (ctx, radio) {
   //120*120 tablero, 22 radios en ancho y 19 en alto , teniendo en cuenta 7x6 casilleros y una separacion entre los mismos de un radio del casillero (circular)
+  this.lockersCollection=[];
   let pointerX;
   let pointerY=this.posY;
   for (let y=0; y<6; y++){
@@ -275,11 +276,4 @@ GameBoard.prototype.insertDiskIntoLocker = function (disk, locker) {
   disk.posY= locker.posY;
   disk.locker= locker;
   locker.value= disk.color;
-};
-
-GameBoard.prototype.resetLockers = function () {
-  for (var i = 0; i < this.lockersCollection.length; i++) {
-    this.lockersCollection[i].value= null;
-    this.lockersCollection[i].occupied= false;
-  }
 };

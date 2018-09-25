@@ -239,7 +239,6 @@ console.log(document.getElementById('p1').value);
   function reset(event) {
     diskCollection = [];
     gameBoard.createBoard(ctx, 15);
-    gameBoard.resetLockers();
     assignDisksToPlayer(1);
     assignDisksToPlayer(2);
     currentDisk = null;
@@ -357,11 +356,12 @@ console.log(document.getElementById('p1').value);
 
     let lockersBelow = gameBoard.getLockersBelow(x, y);
     let sum = 1;
+    console.log(lockersBelow.length);
     for (var i = 0; i < lockersBelow.length; i++) {
       if (lockersBelow[i].value == currentDisk.color) {
         sum++;
       } else {
-        sum = 0;
+        sum = 1;
       }
     }
     return (sum >= 4);
