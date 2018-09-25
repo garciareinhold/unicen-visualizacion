@@ -116,6 +116,7 @@ function getDisksWithValue(value) {
 $('.clear').click("bind", function (event) {
   event.preventDefault();
   let value= $(this).data('value');
+  (value=="red")? player1.image=null : player2.image=null;
   let disks= getDisksWithValue(value);
   for (var i = 0; i < disks.length; i++) {
     disks[i].image=null;
