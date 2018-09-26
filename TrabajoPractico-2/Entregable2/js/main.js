@@ -358,10 +358,11 @@ console.log(document.getElementById('p1').value);
     let sum = 1;
     console.log(lockersBelow.length);
     for (var i = 0; i < lockersBelow.length; i++) {
-      if (lockersBelow[i].value == currentDisk.color) {
+      if (lockersBelow[i].value != currentDisk.color) {
+        break;
+      }
+      else{
         sum++;
-      } else {
-        sum = 1;
       }
     }
     return (sum >= 4);
