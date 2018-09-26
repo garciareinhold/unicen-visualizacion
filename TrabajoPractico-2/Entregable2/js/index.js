@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
        alert("La mayoría de las funcionalidades de Line Up 4 no funcionan en Mozilla, por favor use Chrome")
   }
-  
+
   let nameP1 = document.getElementById('nameP1');
   nameP1.onclick =function () {
     game.changeNameP1();
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
       $('#canvas').awesomeCursor('hand-o-up', {
         color: 'black',
         size: 24,
-        hotspot: "center"
+        hotspot: [10,4]  
       });
     }
 
