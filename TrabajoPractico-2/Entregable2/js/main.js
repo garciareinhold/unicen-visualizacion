@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   $('body').awesomeCursor('hand-o-up');
   $('body').css('cursor', '');
-console.log(document.getElementById('p1').value);
   const TOTAL_DISKS = 42;
   const RADIO_DISK = 13.75;
   const GAP_BTW_DISKS = 23;
@@ -15,6 +14,7 @@ console.log(document.getElementById('p1').value);
   let beginX = 0;
   let beginY = 0;
   let turn = "red";
+  document.getElementById('p1').classList.add("remarked");
   let player1 = new Player("red", "player 1");
   let player2 = new Player("blue", "player 2");
   let winPlay = null;
@@ -29,7 +29,7 @@ console.log(document.getElementById('p1').value);
     let st = inputData.value;
     if (player1.name == st) {
       document.getElementById("warningP1").innerHTML = "<p>Sorry, you can´t</p>";
-    } else if (st.length >= 8 || st.length == 0) {
+    } else if (st.length >= 8 || st.length == 0 || st==" ") {
       document.getElementById("warningP1").innerHTML = "<p>Too short or too long</p>";
     } else {
       document.getElementById('p1').innerHTML = st;
@@ -131,7 +131,6 @@ console.log(document.getElementById('p1').value);
 
   ////////////////////////////////////////////////////////////////////////////
   function assignDisksToPlayer(player) {
-    //pasar a clase Juego
     let ini_X;
     let ini_Y = 265;
     let pointer_X;
@@ -155,7 +154,6 @@ console.log(document.getElementById('p1').value);
   }
 
   function updateDiskPosition() {
-    //pasar a clase disk
     ctx.fillStyle = "orange";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     gameBoard.refreshBoard(ctx)
@@ -166,7 +164,6 @@ console.log(document.getElementById('p1').value);
   }
 
   function restoreDisk() {
-    //pasar a clase disk
     currentDisk.posX = currentDisk.originalPosX;
     currentDisk.posY = currentDisk.originalPosY;
     updateDiskPosition();
@@ -276,12 +273,6 @@ console.log(document.getElementById('p1').value);
     } else {
       return false;
     }
-    // if(fourBelow() || fourOnSides() || fourOnDiagonalLeft() || fourOnDiagonalRight()){
-    //   return true
-    // }
-    // else{
-    //    return false;
-    // }
   }
 
   function setWinner() {
@@ -299,7 +290,7 @@ console.log(document.getElementById('p1').value);
     let modal = document.getElementById('modalWin');
     modal.style.display = "block";
     let modalContent = document.getElementsByClassName('modal-content')[0];
-    modalContent.innerHTML = "<p>Player: " + winner.name + " wins with: " + winPlay + "</p>";
+    modalContent.innerHTML = "<p>" + winner.name + " wins with " + winPlay + "</p>";
     setTimeout(function() {
       document.getElementById('modalWin').style.display = "none";
       reset();
@@ -369,9 +360,16 @@ console.log(document.getElementById('p1').value);
   }
 
   function changeTurn() {
-    (turn == COLOR_P_ONE)
-      ? turn = COLOR_P_TWO
-      : turn = COLOR_P_ONE;
+    if(turn==COLOR_P_ONE){
+      turn = COLOR_P_TWO;
+      document.getElementById('p2').classList.add("remarked");
+      document.getElementById('p1').classList.remove("remarked");
+    }
+    else{
+      turn = COLOR_P_ONE;
+      document.getElementById('p1').classList.add("remarked");
+      document.getElementById('p2').classList.remove("remarked");
+    }
   }
 
 })
