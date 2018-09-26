@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
       ? ini_X = 50
       : ini_X = 586;
     (player == 2)
-      ? color_player = COLOR_P_TWO
+      ? color_player = COLOR_P_TWO;
       : color_player = COLOR_P_ONE;
     for (var i = 0; i < TOTAL_DISKS / 14; i++) {
       pointer_X = ini_X;
