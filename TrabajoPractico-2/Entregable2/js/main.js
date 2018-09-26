@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let st = inputData.value;
     if (player1.name == st) {
       document.getElementById("warningP1").innerHTML = "<p>Sorry, you can´t</p>";
-    } else if (st.length >= 8 || st.length == 0 || st==" ") {
+    } else if (st.length >= 13 || st.length == 0 || st==" ") {
       document.getElementById("warningP1").innerHTML = "<p>Too short or too long</p>";
     } else {
       document.getElementById('p1').innerHTML = st;
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let st = inputData.value;
     if (player1.name == st) {
       document.getElementById("warningP2").innerHTML = "<p>Sorry, you can´t</p>";
-    } else if (st.length >= 8 || st.length == 0) {
+    } else if (st.length >= 13 || st.length == 0) {
       document.getElementById("warningP2").innerHTML = "<p>Too short or too long</p>";
     } else {
       document.getElementById('p2').innerHTML = st;
@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
       document.getElementById('modalWin').style.display = "none";
       reset();
-    }, 3500);
+    }, 3000);
 
   }
   function remarkWinner(winner) {

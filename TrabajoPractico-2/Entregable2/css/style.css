@@ -12,22 +12,32 @@ body{
   margin: 0;
 }
 .canvas-css, .player1, .player2{
-   display:inline-block;
+   text-align: center;
+   overflow: hidden;
 }
 
-.container, .header{
-  text-align: center;
+.canvas-css{
+  width: 70%;
+  float: left;
 }
 
 .player1{
+  width: 15%;
   float: left;
 }
+
 .player2{
+  width: 15%;
   float: right;
+}
+.container, .header{
+  text-align: center;
+  height: auto;
 }
 
 #reset{
   clear: both;
+  margin-top: 5%;
 }
  p, button{
 font-family: 'Gloria Hallelujah', cursive;
@@ -83,12 +93,6 @@ input{
   margin: 0 auto;
 }
 
-body{
-  margin-top: 0 auto;
-  margin-bottom: 0 auto;
-  margin-left: 2% ;
-  margin-right: 2%;
-}
 
 #spanP1, #spanP2 {
   border-radius: 5px;
