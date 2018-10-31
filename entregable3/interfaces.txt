@@ -1,0 +1,39 @@
+Agregar justificaciones segun lo charlado en clase:
+
+	
+	TIPS en la eleccion de color
+		60-30-10 rule: la finalidad es brindar un balance entre la composicion de colores
+		la parte predominante deberia ser del color primario, la segunda del color que se elija como
+		secundario y la tercera parte sirve para acentuar el contenido, por eso se encuentra
+		en menor porcentaje.
+	
+		El contraste me ayuda a remarcar las partes que quiero que resalten, es decir si 
+		implementamos dos colores que contrasten bastante el elemento que se encuentra
+		delante va a estar resaltado, llamando mas la atencion. Lo recomendado es aplicar
+		contrastes medios y dejar los contrastes altos para los elementos mas importantes
+		como seria el boton de comprar por ej.
+		
+		Tener en cuenta la psicologia de los colores (que genera en el usuario)
+
+		Usar los enlaces para obtener colores similares al elegido, colores de imagenes
+		que color usar para texto segun el color de fondo y para obtener fuentes de paginas
+		
+		
+
+
+	Fuentes
+		G fonts!
+		Mantener el numero de fuentes al minimo (usar pocas fuentes)
+		Limitar el numero de familias de fuentes al minimo (usar si es posible una sola)
+		Fijarse que las fuentes sean compatibles, ver la familia de la fuente para eso
+		Tratar de usar fuentes estandares, any like open sans
+		Limitar la cantidad de caracteres por linea de todos los textos
+		Elegir una fuente que funcione bien en varios tamaños (no elegir una que no se perciba de pequeña)
+		Usar fuentes con letras distinguibles, todos los mejores sitios usan fuentes estandar
+		Evitar el uso de las mayusculas en toda la palabra
+		No minimices mucho el espacio entre lineas de texto
+		Asegurarse de tener un buen contraste con el color de fondo, para eso usar la herramienta que nos dieron
+		Evitar el coloreado de texto en verde o rojo!!
+		Evitar usar texto blinking
+		
+		
