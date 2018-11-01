@@ -1,9 +1,9 @@
 function Plane() {
   // this.width=;
   // this.height=;
-  // this.lives=;
+  this.lives=3;
   // this.ammo=;
-  // this.immune=;
+  this.immune=false;
   this.alive=true;
   this.velocity=2;
   this.element= $("#plane");
@@ -41,4 +41,23 @@ Plane.prototype.move = function (event) {
       default:
     }
   }
+};
+
+Plane.prototype.colisioned = function () {
+  this.immune=true;
+  this.alive=false;
+  this.lives--;
+  $(this.element).addClass("immunity");
+};
+
+Plane.prototype.respawn = function () {
+  this.alive=true;
+  setTimeout((function(){
+    this.restore();
+  }).bind(this), 5000);
+};
+
+Plane.prototype.restore = function () {
+  this.immune=false;
+  $(this.element).removeClass("immunity");
 };

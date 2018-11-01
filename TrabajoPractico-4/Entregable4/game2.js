@@ -41,7 +41,7 @@ Game.prototype.begin = function () {
 Game.prototype.beginEnemyInterval = function () {
   this.enemiesInterval = setInterval((function(){
     this.throwEnemies();
-  }).bind(this), 1500);
+  }).bind(this), 2500);
 };
 
 Game.prototype.throwEnemies = function () {
@@ -78,7 +78,7 @@ Game.prototype.restore = function () {
   $(this.enemyColisioned).removeClass("enemy1movement");
   $(this.enemyColisioned).css("top", "-110px");
   this.airTrafficInspector.removeExplotions();
-  this.plane.alive=true;
+  this.plane.respawn();
   this.playBackground();
   this.moveEnemies();
   this.beginUpdateInterval();
@@ -105,7 +105,7 @@ Game.prototype.stopBackground = function () {
 Game.prototype.beginUpdateInterval = function () {
   this.updateInterval=setInterval((function(){
     this.update();
-  }).bind(this), 1/30);
+  }).bind(this), 1/8);
 };
 
 Game.prototype.stopUpdateInterval = function () {
@@ -114,10 +114,14 @@ Game.prototype.stopUpdateInterval = function () {
 };
 
 Game.prototype.update = function () {
-  for (var i =this.enemies.length-1 ; i >=0 ; i--) {
-    if (this.airTrafficInspector.colisionPlanes(this.enemies[i], this.plane.element)) {
-      this.enemyColisioned=this.enemies[i];
-      this.stop();
+  if(!this.plane.immune){
+    for (var i =this.enemies.length-1 ; i >=0 ; i--) {
+      if (this.airTrafficInspector.colisionPlanes(this.enemies[i], this.plane.element)) {
+        this.enemyColisioned=this.enemies[i];
+        this.plane.colisioned();
+        this.stop();
+      }
     }
   }
+
 };

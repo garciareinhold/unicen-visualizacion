@@ -82,6 +82,17 @@
     border: 2px solid black;
   }
 
+  .immunity{
+    animation: .2s immune  linear infinite;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes immune {
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+
   @keyframes background-movement {
       100% { background-position-y: 99999px; }
   }
