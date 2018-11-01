@@ -60,6 +60,8 @@ Game.prototype.throwEnemies = function () {
 };
 Game.prototype.stopEnemyInterval = function () {
   clearInterval(this.enemiesInterval);
+  this.enemiesInterval= null;
+
 };
 
 Game.prototype.stop = function () {
@@ -108,7 +110,7 @@ Game.prototype.beginUpdateInterval = function () {
 
 Game.prototype.stopUpdateInterval = function () {
   clearInterval(this.updateInterval);
-
+  this.updateInterval= null;
 };
 
 Game.prototype.update = function () {
