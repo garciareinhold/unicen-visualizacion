@@ -19,12 +19,12 @@
   }
 
   .explosion{
-    height: 64px;
-    width: 64px;
+    height: 128px;
+    width: 128px;
     position: absolute;
-    background: url('images/explosion.png');
+    background: url('images/explosionBig.png') left center;
     z-index: 9999;
-    animation: explode 0.8s steps(14) infinite;
+    animation: explode .8s steps(14) ;
   }
 
   #plane{
@@ -91,5 +91,5 @@
   }
 
   @keyframes explode {
-    100%{ background-position: -896px;}
+    100%{ background-position: -1792px;}
   }

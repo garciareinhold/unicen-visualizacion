@@ -8,6 +8,13 @@ $(document).ready(function() {
       planeMovement(event, isAlive);
   });
 
+
+
+
+
+//////////////////////////////////////////
+//PLANE MOVEMENT
+//////////////////////////////////////////
   function planeMovement(event, isAlive) {
     let x = parseInt(plane.css("left"));
     let y = parseInt(plane.css("bottom"));
@@ -39,7 +46,7 @@ $(document).ready(function() {
 
   }
 
-  let availables = [
+  let enemies = [
     $('#enemy1'),
     $('#enemy2'),
     $('#enemy3'),
@@ -51,43 +58,62 @@ $(document).ready(function() {
     $('#enemy9'),
     $('#enemy10')
   ]
-  let occupied = [];
 
-  let raiseEnemies = setInterval(throwEnemies, 2000);
 
-  function throwEnemies() {
-    let enemy = availables.pop();
-    occupied.unshift(enemy);
-    console.log(enemy);
-    $(enemy).css("left", Math.random() * 325 + "px");
-    $(enemy).addClass('enemy1movement');
-}
+//////////////////////////////////////////////////////
+//throwEnemies
+/////////////////////////////////////////////////////
+  let raiseEnemies =null;
 
+  beginEnemyInterval();
+
+  function beginEnemyInterval() {
+    raiseEnemies = setInterval(throwEnemies, 2000);
+  }
   function stopEnemyInterval() {
     clearInterval(raiseEnemies);
   }
 
-  function restart() {
+  function throwEnemies() {
+    for (var i = 0; i < enemies.length; i++) {
+      let enemy= enemies[i];
+      if($(enemy).css("top")=="-110px"){
+        $(enemy).css("left", Math.random() * 325 + "px");
+        $(enemy).addClass('enemy1movement');
+        break;
+      }
+      else if($(enemy).css("top")=="700px"){
+        $(enemy).removeClass('enemy1movement');
+        $(enemy).css("top", "-110px");
+      }
+    }
+    for (var i = 0; i < enemies.length; i++) {
+      let enemy=enemies[i];
+      console.log($(enemy).css("top"));
+    }
+  }
+
+
+  //////////////////////////////////////////////////////
+  //RESTORE GAME
+  /////////////////////////////////////////////////////
+
+  function stopGame() {
+      stopUpdate();
       $('.sky-background').css("animation-play-state", "paused");
       stopEnemies();
       isAlive=false;
-      setTimeout(restoreGame, 1000);
-  }
-
-  function stopEnemies() {
-    $('.enemy').css("animation-play-state", "paused");
-  }
-  function moveEnemies() {
-    $('.enemy').css("animation-play-state", "running");
+      setTimeout(restoreGame, 800);
   }
 
   function restoreGame() {
     $(enemyColisioned).removeClass("enemy1movement");
-    availables.push(enemyColisioned);
+    $(enemyColisioned).css("top", "-110px");
     removeExplotions();
     isAlive=true;
     $('.sky-background').css("animation-play-state", "running");
     moveEnemies();
+    beginUpdateInterval();
   }
 
   function removeExplotions() {
@@ -97,24 +123,48 @@ $(document).ready(function() {
     }
   }
 
-  let beginUpdate = setInterval(update, 1/30);
+  function stopEnemies() {
+    stopEnemyInterval();
+    $('.enemy').css("animation-play-state", "paused");
+
+  }
+  function moveEnemies() {
+    $('.enemy').css("animation-play-state", "running");
+    beginEnemyInterval();
+  }
+
+
+//////////////////////////////////////////////////////
+//UPDATE
+////////////////////////////////////////////////////
+
+  let beginUpdate =null;
+
+  beginUpdateInterval();
+
+  function beginUpdateInterval() {
+    beginUpdate = setInterval(update, 1/30);
+  }
 
   function update() {
-    for (var i =occupied.length-1 ; i >=0 ; i--) {
-      if (colision(occupied[i])) {
-        occupied.splice(i, 1);
-        restart();
-      } else if ($(occupied[i]).css("top") == "700px") {
-        $(occupied[i]).removeClass('enemy1movement');
-        availables.unshift(occupied[i]);
-        occupied.splice(i, 1);
+    for (var i =enemies.length-1 ; i >=0 ; i--) {
+      if (colision(enemies[i])) {
+        stopGame();
       }
     }
   }
+
   function stopUpdate() {
     clearInterval(beginUpdate);
   }
 
+
+
+
+
+////////////////////////////////////////////////////////
+//DETECCIÓN DE COLISIÓN
+///////////////////////////////////////////////////////
   function colision(enemy) {
     let planeHeight=parseInt($(plane).css("height"));
     let planeWidth=parseInt($(plane).css("width"));
@@ -130,18 +180,17 @@ $(document).ready(function() {
     let PlaneEndDown=planeHeight+planeBeginUp;
 
     if((((enemyEndSides > planeBeginSides) && (enemyEndSides < PlaneEndSides)) ||((enemyBeginSides < PlaneEndSides) && (enemyBeginSides > planeBeginSides))) && ((enemyEndDown > planeBeginUp) && (enemyBeginUp < PlaneEndDown)) ){
-      //aca al enemy y al plane les meto el div arriba
       enemyColisioned=enemy;
       let explosion= document.createElement("div");
       $("#plane").append(explosion);
       $(explosion).addClass("explosion");
-      $(explosion).css("top", "+="+((planeHeight-64)/2));
-      $(explosion).css("left", "+="+((planeWidth-64)/2));
+      $(explosion).css("top", "+="+((planeHeight-128)/2));
+      $(explosion).css("left", "+="+((planeWidth-128)/2));
       let explosion2= document.createElement("div");
       $(enemy).append(explosion2);
       $(explosion2).addClass("explosion");
-      $(explosion2).css("top", "+="+((enemyHeight-64)/2));
-      $(explosion2).css("left", "+="+((enemyWidth-64)/2));
+      $(explosion2).css("top", "+="+((enemyHeight-128)/2));
+      $(explosion2).css("left", "+="+((enemyWidth-128)/2));
 
       return true;
   }
