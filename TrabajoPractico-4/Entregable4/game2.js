@@ -2,15 +2,16 @@ function Game() {
   this.enemies=null;
   this.plane= new Plane();
   this.enemyColisioned=null;
-  this.score=0;
   this.ranking=null;
   this.enemiesInterval=null;
   // this.width=;
   // this.height=;
+  this.lifeInterval=null;
   this.background= $('.sky-background');
   this.timeExplotion= 800;
   this.updateInterval=null;
   this.airTrafficInspector= new TrafficInspector();
+  this.life=$('#life');
 }
 
 Game.prototype.raiseEnemies = function () {
@@ -28,6 +29,33 @@ Game.prototype.raiseEnemies = function () {
   ]
 };
 
+Game.prototype.beginLifeInterval = function () {
+  this.lifeInterval= setInterval(function(){
+    $(this.life)
+    .clearQueue()
+    .stop()
+    .css({
+      left: Math.random() * 325 + "px",
+      top: "-110px"
+    })
+    .animate({
+              top: "700px"
+             },
+             {
+                duration: 3000,
+                start: function() {
+                   console.log("empece");
+                },
+                complete: function () {
+                  console.log("termine");
+                }
+              })
+  }, 10000)
+
+
+
+};
+
 Game.prototype.resetEnemies = function () {
   this.enemies= null;
 };
@@ -36,6 +64,7 @@ Game.prototype.begin = function () {
   this.raiseEnemies();
   this.beginEnemyInterval();
   this.beginUpdateInterval();
+  this.beginLifeInterval();
 };
 
 Game.prototype.beginEnemyInterval = function () {
@@ -45,6 +74,8 @@ Game.prototype.beginEnemyInterval = function () {
 };
 
 Game.prototype.throwEnemies = function () {
+
+  this.plane.score+=10;
   for (var i = 0; i < this.enemies.length; i++) {
     let enemy=this.enemies[i];
     if($(enemy).css("top")=="-110px"){
@@ -114,10 +145,11 @@ Game.prototype.stopUpdateInterval = function () {
 };
 
 Game.prototype.update = function () {
-  if(!this.plane.immune){
+    if(!this.plane.immune){
     for (var i =this.enemies.length-1 ; i >=0 ; i--) {
       if (this.airTrafficInspector.colisionPlanes(this.enemies[i], this.plane.element)) {
         this.enemyColisioned=this.enemies[i];
+        // location.reload();
         this.plane.colisioned();
         this.stop();
       }

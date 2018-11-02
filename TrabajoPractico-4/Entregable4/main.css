@@ -62,8 +62,16 @@
     height: 90px;
     position: absolute;
     background: url(images/enemy3.png);
-
   }
+
+  #life{
+    width: 48px;
+    height: 47px;
+    top: -110px;
+    background: url("images/life.png");
+    position: absolute;
+  }
+
 
   .enemy1movement{
     animation: 6s enemyforward linear;
@@ -78,9 +86,7 @@
     animation-fill-mode: forwards;
   }
 
-  .mark{
-    border: 2px solid black;
-  }
+
 
   .immunity{
     animation: .2s immune  linear infinite;

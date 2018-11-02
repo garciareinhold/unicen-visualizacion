@@ -3,6 +3,7 @@ function Plane() {
   // this.height=;
   this.lives=3;
   // this.ammo=;
+  this.score=0;
   this.immune=false;
   this.alive=true;
   this.velocity=2;
