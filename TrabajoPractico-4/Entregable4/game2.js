@@ -7,6 +7,7 @@ function Game() {
   // this.width=;
   // this.height=;
   this.lifeInterval=null;
+  this.collectLifeInterval=null;
   this.background= $('.sky-background');
   this.timeExplotion= 800;
   this.updateInterval=null;
@@ -30,27 +31,38 @@ Game.prototype.raiseEnemies = function () {
 };
 
 Game.prototype.beginLifeInterval = function () {
-  this.lifeInterval= setInterval(function(){
+  this.lifeInterval= setInterval((function(){
     $(this.life)
     .clearQueue()
     .stop()
     .css({
       left: Math.random() * 325 + "px",
-      top: "-110px"
+      top: "-110px",
+      opacity: 1.0
     })
     .animate({
               top: "700px"
              },
              {
                 duration: 3000,
-                start: function() {
-                   console.log("empece");
-                },
-                complete: function () {
-                  console.log("termine");
-                }
+                start: (function() {
+                   this.collectLifeInterval= setInterval((function () {
+                     if(this.airTrafficInspector.colisionPlanes(this.life, this.plane.element, true)){
+                       this.plane.pickedLife=true;
+                       $(this.life).css("opacity", 0);
+                       console.log(this.plane);
+                     }
+                   }).bind(this), 500);
+                }).bind(this),
+                complete: (function () {
+                  clearInterval(this.collectLifeInterval);
+                  if(this.plane.pickedLife){
+                    this.plane.lives++;
+                  }
+                  this.plane.pickedLife=false;
+                }).bind(this)
               })
-  }, 10000)
+  }).bind(this), 5000)
 
 
 
@@ -147,7 +159,7 @@ Game.prototype.stopUpdateInterval = function () {
 Game.prototype.update = function () {
     if(!this.plane.immune){
     for (var i =this.enemies.length-1 ; i >=0 ; i--) {
-      if (this.airTrafficInspector.colisionPlanes(this.enemies[i], this.plane.element)) {
+      if (this.airTrafficInspector.colisionPlanes(this.enemies[i], this.plane.element, false)) {
         this.enemyColisioned=this.enemies[i];
         // location.reload();
         this.plane.colisioned();

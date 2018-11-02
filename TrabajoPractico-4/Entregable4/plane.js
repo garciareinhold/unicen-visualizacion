@@ -2,6 +2,7 @@ function Plane() {
   // this.width=;
   // this.height=;
   this.lives=3;
+  this.pickedLife=false;
   // this.ammo=;
   this.score=0;
   this.immune=false;
