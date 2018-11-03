@@ -1,112 +1,180 @@
 .game-background {
-    margin: auto;
-    top: 15px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 450px;
-    height: 600px;
-    position: absolute;
-    overflow: hidden;
+  margin: auto;
+  top: 15px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 717px;
+  height: 75%;
+  position: absolute;
+  overflow: hidden;
 }
 
-.sky-background{
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background: url(images/sky2.png) repeat-y;
-    animation: 300s background-movement  linear infinite;
+.sky-background {
+  height: 100%;
+  width: 497px;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  background: url(images/sky2.png) repeat-y;
+  animation: 300s background-movement linear infinite;
+}
+
+
+.plane-data{
+  height: 100%;
+  width: 220px;
+  float: right;
+  background-color: black;
+  text-align: center;
+}
+p{
+  font-family: 'VT323', monospace;
+  font-size: 70px;
+  color: green;
+  padding: 0px;
+  margin: 20px;
+}
+
+#score{
+    font-family: 'VT323', monospace;
+  color: white;
+  font-size: 50px;
+}
+
+#lives-container{
+  width: 159px;
+  height: 153px;
+  left: 14%;
+  position:relative;
+}
+
+
+.lives{
+  left: 40px;
+  height: 51px;
+  width: 53px;
+  background: url("images/heart.png");
+  float: left;
+}
+
+.presentation {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: url(gamePresentation.png) no-repeat;
+  z-index: 9999;
+}
+
+.gameContent {
+  height: 25%;
+  width: 25%;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+}
+
+.explosion {
+  height: 128px;
+  width: 128px;
+  position: absolute;
+  background: url('images/explosionBig.png') left center;
+  z-index: 9998;
+  animation: explode .8s steps(14);
+}
+
+#plane {
+  height: 75px;
+  width: 95px;
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  background: url(images/plane.png);
+}
+
+.enemy1 {
+  top: -110px;
+  left: 0px;
+  width: 110px;
+  height: 75px;
+  position: absolute;
+  background: url(images/enemy1.png);
+}
+
+.enemy2 {
+  top: -110px;
+  left: 0px;
+  width: 88px;
+  height: 86px;
+  position: absolute;
+  background: url(images/enemy2.png);
+}
+
+.enemy3 {
+  top: -110px;
+  left: 0px;
+  width: 139px;
+  height: 90px;
+  position: absolute;
+  background: url(images/enemy3.png);
+}
+
+#life {
+  width: 48px;
+  height: 47px;
+  top: -110px;
+  background: url("images/life.png");
+  position: absolute;
+}
+
+.enemy1movement {
+  animation: 6s enemyforward linear;
+  animation-fill-mode: forwards;
+}
+
+.enemy1movement {
+  animation: 10s enemyforward linear;
+  animation-fill-mode: forwards;
+}
+
+.enemy1movement {
+  animation: 8s enemyforward linear;
+  animation-fill-mode: forwards;
+}
+
+.immunity {
+  animation: .2s immune linear infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes immune {
+  0% {
+    opacity: 1.0;
   }
 
-  .explosion{
-    height: 128px;
-    width: 128px;
-    position: absolute;
-    background: url('images/explosionBig.png') left center;
-    z-index: 9999;
-    animation: explode .8s steps(14) ;
+  50% {
+    opacity: 0.0;
   }
 
-  #plane{
-    height: 75px;
-    width: 95px;
-    bottom: 0px;
-    left: 0px;
-    position: absolute;
-    background: url(images/plane.png);
+  100% {
+    opacity: 1.0;
   }
+}
 
-  .enemy1{
-    top:-110px;
-    left: 0px;
-    width: 110px;
-    height: 75px;
-    position: absolute;
-    background: url(images/enemy1.png);
+@keyframes background-movement {
+  100% {
+    background-position-y: 99999px;
   }
+}
 
-  .enemy2{
-    top:-110px;
-    left: 0px;
-    width:88px;
-    height: 86px;
-    position: absolute;
-    background: url(images/enemy2.png);
-
+@keyframes enemyforward {
+  100% {
+    top: 700px;
   }
+}
 
-  .enemy3{
-    top:-110px;
-    left: 0px;
-    width:139px;
-    height: 90px;
-    position: absolute;
-    background: url(images/enemy3.png);
+@keyframes explode {
+  100% {
+    background-position: -1792px;
   }
-
-  #life{
-    width: 48px;
-    height: 47px;
-    top: -110px;
-    background: url("images/life.png");
-    position: absolute;
-  }
-
-
-  .enemy1movement{
-    animation: 6s enemyforward linear;
-    animation-fill-mode: forwards;
-  }
-  .enemy1movement{
-    animation: 10s enemyforward linear;
-    animation-fill-mode: forwards;
-  }
-  .enemy1movement{
-    animation: 8s enemyforward linear;
-    animation-fill-mode: forwards;
-  }
-
-
-
-  .immunity{
-    animation: .2s immune  linear infinite;
-    animation-fill-mode: forwards;
-  }
-
-  @keyframes immune {
-    0% { opacity: 1.0; }
-     50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
-  }
-
-  @keyframes background-movement {
-      100% { background-position-y: 99999px; }
-  }
-
-  @keyframes enemyforward {
-    100%{ top: 700px;}
-  }
-
-  @keyframes explode {
-    100%{ background-position: -1792px;}
-  }
+}

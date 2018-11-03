@@ -1,10 +1,12 @@
 function Plane() {
   // this.width=;
   // this.height=;
-  this.lives=3;
+  this.lives=[];
   this.pickedLife=false;
   // this.ammo=;
   this.score=0;
+  this.livesData=$("#lives-container");
+  this.scoreData=$('#score');
   this.immune=false;
   this.alive=true;
   this.velocity=2;
@@ -45,11 +47,15 @@ Plane.prototype.move = function (event) {
   }
 };
 
+Plane.prototype.beginLives = function (livesCollection) {
+  this.lives=$(livesCollection).toArray();
+};
+
 Plane.prototype.colisioned = function () {
   this.immune=true;
   this.alive=false;
-  this.lives--;
   $(this.element).addClass("immunity");
+  this.removeLife();
 };
 
 Plane.prototype.respawn = function () {
@@ -57,6 +63,20 @@ Plane.prototype.respawn = function () {
   setTimeout((function(){
     this.restore();
   }).bind(this), 5000);
+};
+
+Plane.prototype.addLife = function () {
+  if((this.lives.length-1)<=9){
+    let life= document.createElement("div");
+    $(life).addClass("lives");
+    this.livesData.append(life);
+    this.lives.push(life);
+  }
+};
+
+Plane.prototype.removeLife = function () {
+  let element= this.lives.pop();
+  $(element).remove();
 };
 
 Plane.prototype.restore = function () {

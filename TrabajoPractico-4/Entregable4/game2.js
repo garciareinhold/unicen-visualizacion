@@ -13,6 +13,7 @@ function Game() {
   this.updateInterval=null;
   this.airTrafficInspector= new TrafficInspector();
   this.life=$('#life');
+
 }
 
 Game.prototype.raiseEnemies = function () {
@@ -49,15 +50,15 @@ Game.prototype.beginLifeInterval = function () {
                    this.collectLifeInterval= setInterval((function () {
                      if(this.airTrafficInspector.colisionPlanes(this.life, this.plane.element, true)){
                        this.plane.pickedLife=true;
+                       console.log("picked");
                        $(this.life).css("opacity", 0);
-                       console.log(this.plane);
                      }
                    }).bind(this), 500);
                 }).bind(this),
                 complete: (function () {
                   clearInterval(this.collectLifeInterval);
                   if(this.plane.pickedLife){
-                    this.plane.lives++;
+                    this.plane.addLife();
                   }
                   this.plane.pickedLife=false;
                 }).bind(this)
@@ -73,6 +74,7 @@ Game.prototype.resetEnemies = function () {
 };
 
 Game.prototype.begin = function () {
+  this.plane.beginLives($('.lives'));
   this.raiseEnemies();
   this.beginEnemyInterval();
   this.beginUpdateInterval();
@@ -88,6 +90,7 @@ Game.prototype.beginEnemyInterval = function () {
 Game.prototype.throwEnemies = function () {
 
   this.plane.score+=10;
+  $(this.plane.scoreData).html(this.plane.score);
   for (var i = 0; i < this.enemies.length; i++) {
     let enemy=this.enemies[i];
     if($(enemy).css("top")=="-110px"){
