@@ -16,7 +16,7 @@ TrafficInspector.prototype.colisionPlanes = function (enemy, plane, isLife) {
   let planeBeginUp=parseInt($(plane).css("top"));
   let PlaneEndDown=planeHeight+planeBeginUp;
 
-  if((((enemyEndSides > planeBeginSides) && (enemyEndSides < PlaneEndSides)) ||((enemyBeginSides < PlaneEndSides) && (enemyBeginSides > planeBeginSides))) && ((enemyEndDown > planeBeginUp) && (enemyBeginUp < PlaneEndDown)) ){
+  if((((enemyEndSides > planeBeginSides) && (enemyEndSides < PlaneEndSides)) ||((enemyBeginSides < PlaneEndSides) && (enemyBeginSides > planeBeginSides)) ||((enemyBeginSides < PlaneEndSides) && (enemyEndSides > PlaneEndSides))) && (this.checkColisionVertical(enemy, plane)) ){
     if(!isLife){
       let explosion= document.createElement("div");
       $(plane).append(explosion);
@@ -40,5 +40,18 @@ TrafficInspector.prototype.removeExplotions = function () {
   let explotions= $('.explosion');
   for (var i = 0; i < explotions.length; i++) {
     $(explotions[i]).remove();
+  }
+};
+
+TrafficInspector.prototype.checkColisionVertical = function (enemy, plane) {
+  let planeHeight=parseInt($(plane).css("height"));
+  let enemyHeight=parseInt($(enemy).css("height"));
+  let enemyBeginUp=parseInt($(enemy).css("top"));
+  let enemyEndDown=enemyHeight+enemyBeginUp;
+  let planeBeginUp=parseInt($(plane).css("top"));
+  let PlaneEndDown=planeHeight+planeBeginUp;
+
+  if ((enemyEndDown > planeBeginUp) && (enemyBeginUp < PlaneEndDown)) {
+    return true;
   }
 };

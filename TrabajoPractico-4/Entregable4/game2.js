@@ -13,6 +13,7 @@ function Game() {
   this.updateInterval=null;
   this.airTrafficInspector= new TrafficInspector();
   this.life=$('#life');
+  this.lifeThrowed=false;
 
 }
 
@@ -47,20 +48,14 @@ Game.prototype.beginLifeInterval = function () {
              {
                 duration: 3000,
                 start: (function() {
-                   this.collectLifeInterval= setInterval((function () {
-                     if(this.airTrafficInspector.colisionPlanes(this.life, this.plane.element, true)){
-                       this.plane.pickedLife=true;
-                       console.log("picked");
-                       $(this.life).css("opacity", 0);
-                     }
-                   }).bind(this), 500);
+                   this.lifeThrowed=true;
                 }).bind(this),
                 complete: (function () {
-                  clearInterval(this.collectLifeInterval);
                   if(this.plane.pickedLife){
                     this.plane.addLife();
                   }
                   this.plane.pickedLife=false;
+                  this.lifeThrowed=false;
                 }).bind(this)
               })
   }).bind(this), 5000)
@@ -164,11 +159,15 @@ Game.prototype.update = function () {
     for (var i =this.enemies.length-1 ; i >=0 ; i--) {
       if (this.airTrafficInspector.colisionPlanes(this.enemies[i], this.plane.element, false)) {
         this.enemyColisioned=this.enemies[i];
-        // location.reload();
         this.plane.colisioned();
         this.stop();
       }
     }
   }
+  if(this.airTrafficInspector.colisionPlanes(this.life, this.plane.element, true)){
+      this.plane.pickedLife=true;
+      console.log("picked");
+      $(this.life).css("opacity", 0);
+    }
 
 };
