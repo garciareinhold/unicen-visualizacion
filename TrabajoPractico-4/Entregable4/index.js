@@ -1,5 +1,6 @@
 $(document).ready(function() {
   let game;
+  let score=[];
   $(".start-menu").css("z-index", 99999);
 
 
@@ -67,6 +68,11 @@ $(document).ready(function() {
     }
   })
 
+  function hiScore(){
+    $(".start-menu").css("z-index", 99998);
+    $('.hi-score').css("z-index", 99999);
+  }
+
   function play() {
     $(".start-menu").css("z-index", 99998);
     $('.game-background').css("z-index", 99999);
@@ -122,4 +128,33 @@ $(document).ready(function() {
     return options;
   }
 
+  $("#submit-score").on("click", function(event){
+    event.preventDefault();
+    let register= {
+      "name": $("#namePlayer").val(),
+      "points": $("#finalScore").val()
+    }
+    score.push(register);
+    let orderScore= sortJSON(score, "points");
+
+    let tbody= document.createElement("tbody");
+    for (let i = 0; i < score.length; i++){
+    let obj = score[i];
+    let tr= document.createElement("tr");
+    for (let key in obj){
+        let attrName = key;
+        let attrValue = obj[key];
+        $(tr).append("<td>"+attrValue+"</td>");
+    }
+    $(tbody).append(tr);
+}
+  })
+
+  function sortJSON(data, key) {
+    return data.sort(function (a, b) {
+        let x = a[key],
+        y = b[key];
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    });
+}
 });

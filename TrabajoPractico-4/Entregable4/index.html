@@ -1,71 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
-    <title></title>
-  </head>
-  <body>
-      <div class="game-background">
-        <div class="sky-background">
-          <div id="plane" class="plane"></div>
-          <div id="enemy1"class="enemy enemy1"></div>
-          <div id="enemy2"class="enemy enemy3"></div>
-          <div id="enemy3"class="enemy enemy2"></div>
-          <div id="enemy4"class="enemy enemy2"></div>
-          <div id="enemy5"class="enemy enemy1"></div>
-          <div id="enemy6"class="enemy enemy2"></div>
-          <div id="enemy7"class="enemy enemy3"></div>
-          <div id="enemy8"class="enemy enemy1"></div>
-          <div id="enemy9"class="enemy enemy1"></div>
-          <div id="enemy10"class="enemy enemy2"></div>
-          <div id="life"></div>
-        </div>
-        <div class="plane-data">
-            <p>SCORE</p>
-            <span id="score">0 </span>
-            <div id="lives-container">
-              <div class="lives"></div>
-              <div class="lives"></div>
-              <div class="lives"></div>
-            </div>
-        </div>
-      </div>
-      <div class="start-menu">
-        <img src="images/game-wallpaper.jpg" alt="">
-        <ul class="lists">
-          <li><a class="menu-item"data-id="play"href="">PLAY</a></li>
-          <li><a class="menu-item"data-id="options"href="">OPTIONS</a></li>
-          <li><a class="menu-item" data-id="hi-score"href="">HI-SCORE</a></li>
-        </ul>
-      </div>
-      <div class="options">
-        <img src="images/game-wallpaper.jpg" alt="">
-        <ul class="lists">
-          <li><a class="options-item "data-id="difficulty"href="">DIFFICULTY: </a><input id="difficulty"readonly type="" name="" value="NORMAL"></li>
-          <li><a class="options-item"data-id="music"href="">MUSIC: </a><input id="music" readonly type="" name="" value="ON"></li>
-          <li><a class="options-item" data-id="sound-effect"href="">SOUND-EFFECTS: </a><input id="sound-effect" readonly type="" name="" value="ON"></li>
-          <li><a class="options-item" data-id="back"href="">BACK</a></li>
-        </ul>
 
-      </div>
-      <div class="hi-score">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <title></title>
+</head>
 
+<body>
+  <div class="game-background">
+    <div id="modalFinish" class="modal">
+      <div class="modal-content">
+        <h1>YOU LOOSE!</h1>
+        <p><input id="finalScore" type="text" readonly name="" value="0"></p>
+        <p id="name">Name<input id="namePlayer" type="text" name="" value=""></p>
+        <button id="submit-score" type="button" name="button">Send</button>
       </div>
-      <div class="how-to-play">
-
-      </div>
-      <div id="modalFinish"  class="modal">
-    <div class="modal-content">
-      <h1>YOU LOOSE!</h1>
-      <input id="finalScore" type="text" readonly name="" value="0">
-      Name: <input type="text" name="" value="">
-      <input type="submit" name="" value="">
     </div>
+    <div class="sky-background">
+      <div id="plane" class="plane"></div>
+      <div id="enemy1" class="enemy enemy1"></div>
+      <div id="enemy2" class="enemy enemy3"></div>
+      <div id="enemy3" class="enemy enemy2"></div>
+      <div id="enemy4" class="enemy enemy2"></div>
+      <div id="enemy5" class="enemy enemy1"></div>
+      <div id="enemy6" class="enemy enemy2"></div>
+      <div id="enemy7" class="enemy enemy3"></div>
+      <div id="enemy8" class="enemy enemy1"></div>
+      <div id="enemy9" class="enemy enemy1"></div>
+      <div id="enemy10" class="enemy enemy2"></div>
+      <div id="life"></div>
+    </div>
+    <div class="plane-data">
+      <p>SCORE</p>
+      <span id="score">0 </span>
+      <div id="lives-container">
+        <div class="lives"></div>
+        <div class="lives"></div>
+        <div class="lives"></div>
+      </div>
+    </div>
+  </div>
+  <div class="start-menu">
+    <img src="images/game-wallpaper.jpg" alt="">
+    <ul class="lists">
+      <li><a class="menu-item" data-id="play" href="">PLAY</a></li>
+      <li><a class="menu-item" data-id="options" href="">OPTIONS</a></li>
+      <li><a class="menu-item" data-id="hi-score" href="">HI-SCORE</a></li>
+    </ul>
+  </div>
+  <div class="options">
+    <img src="images/game-wallpaper.jpg" alt="">
+    <ul class="lists">
+      <li><a class="options-item " data-id="difficulty" href="">DIFFICULTY: </a><input id="difficulty" readonly type="" name="" value="NORMAL"></li>
+      <li><a class="options-item" data-id="music" href="">MUSIC: </a><input id="music" readonly type="" name="" value="ON"></li>
+      <li><a class="options-item" data-id="sound-effect" href="">SOUND-EFFECTS: </a><input id="sound-effect" readonly type="" name="" value="ON"></li>
+      <li><a class="options-item" data-id="back" href="">BACK</a></li>
+    </ul>
 
   </div>
-      <script
+  <div class="hi-score">
+    <h1>High scores</h1>
+   <table id="score-data">
+     <thead>
+       <th>NAME</th>
+       <th>POINTS</th>
+     </thead>
+     <tbody>
+      <tr>
+        <td>Pepe</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>Juan</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Jose</td>
+        <td>10</td>
+      </tr>
+     </tbody>
+   </table>
+  </div>
+  <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
@@ -74,5 +92,6 @@
   <script type="text/javascript"src="game2.js"></script>
   <script type="text/javascript"src="index.js"></script>
 
-  </body>
+</body>
+
 </html>
