@@ -1,15 +1,63 @@
-.game-background {
+.game-background, .options, .hi-score, .how-to-play, .start-menu {
   margin: auto;
   top: 15px;
   right: 0;
   bottom: 0;
   left: 0;
   width: 717px;
-  height: 75%;
+  height: 500px;
   position: absolute;
   overflow: hidden;
 }
+/* *{
+  border:1px solid brown;
+} */
+img{
+  margin-top: 5%;
+}
+.options{
+  background-color: black;
+}
+input{
+  border: none;
+  background-color: black;
+  color: green;
+  font-family: 'VT323', monospace;
+  font-size: 100%;
+}
+.start-menu, .options{
+  text-align: center;
 
+  background-color: black;
+}
+.lists{
+  list-style-type: none;
+  padding:0px;
+  margin-top: 5%;
+  font-family: 'VT323', monospace;
+  font-size: 200%;
+}
+li{
+  display: block;
+  padding-left: 0px;
+  margin:auto;
+  margin-bottom: 2%;
+}
+a{
+  text-decoration: none;
+  color: green;
+
+}
+a:hover{
+  color: white;
+  transition: color .25s ease-in;
+}
+.hi-score{
+  background-color: yellow;
+}
+.how-to-play{
+  background-color: black;
+}
 .sky-background {
   height: 100%;
   width: 497px;
@@ -128,18 +176,9 @@ p{
   position: absolute;
 }
 
-.enemy1movement {
-  animation: 6s enemyforward linear;
-  animation-fill-mode: forwards;
-}
 
 .enemy1movement {
-  animation: 10s enemyforward linear;
-  animation-fill-mode: forwards;
-}
-
-.enemy1movement {
-  animation: 8s enemyforward linear;
+  animation: 4s enemyforward linear;
   animation-fill-mode: forwards;
 }
 
@@ -147,6 +186,30 @@ p{
   animation: .2s immune linear infinite;
   animation-fill-mode: forwards;
 }
+
+#modalFinish {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+
+.modal-content {
+    background-color: rgba(255, 103, 33, 0.84);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
 
 @keyframes immune {
   0% {

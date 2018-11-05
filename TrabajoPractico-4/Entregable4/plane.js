@@ -1,6 +1,6 @@
 function Plane() {
-  // this.width=;
-  // this.height=;
+  this.width=parseInt($("#plane").css("width"));
+  this.height=parseInt($("#plane").css("height"));
   this.lives=[];
   this.pickedLife=false;
   // this.ammo=;
@@ -9,31 +9,29 @@ function Plane() {
   this.scoreData=$('#score');
   this.immune=false;
   this.alive=true;
-  this.velocity=2;
+  this.velocity=5;
   this.element= $("#plane");
-  this.restringedLeft=0;
-  this.restringedRight=355;
-  this.restringedTop=0;
-  this.restringedDown=525
+  this.restringedDown=parseInt($(".sky-background").css("height"))-this.height;
+  this.restringedRight=parseInt($(".sky-background").css("width"))-this.width-this.velocity;
 }
 
 Plane.prototype.move = function (event) {
   let x = parseInt(this.element.css("left"));
-  let y = parseInt(this.element.css("bottom"));
+  let y = parseInt(this.element.css("top"));
   if (this.alive) {
     switch (event.key) {
       case "ArrowDown":
-        if (y >= this.restringedTop) {
-          this.element.css("bottom", y - this.velocity + "px");
+        if (y < this.restringedDown) {
+          this.element.css("top", y + this.velocity + "px");
         }
         break;
       case "ArrowUp":
-        if (y < this.restringedDown) {
-          this.element.css("bottom", y + this.velocity + "px");
+        if (y > 0) {
+          this.element.css("top", y -this.velocity + "px");
         }
         break;
       case "ArrowLeft":
-        if (x >= this.restringedLeft) {
+        if (x >= this.velocity) {
           this.element.css("left", x - this.velocity + "px");
         }
         break;

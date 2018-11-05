@@ -1,5 +1,8 @@
 function TrafficInspector() {
   this.explotionSize=128;
+  this.explotionEffect=null;
+  this.lifeUp= null;
+
 }
 
 TrafficInspector.prototype.colisionPlanes = function (enemy, plane, isLife) {
@@ -18,6 +21,9 @@ TrafficInspector.prototype.colisionPlanes = function (enemy, plane, isLife) {
 
   if((((enemyEndSides > planeBeginSides) && (enemyEndSides < PlaneEndSides)) ||((enemyBeginSides < PlaneEndSides) && (enemyBeginSides > planeBeginSides)) ||((enemyBeginSides < PlaneEndSides) && (enemyEndSides > PlaneEndSides))) && (this.checkColisionVertical(enemy, plane)) ){
     if(!isLife){
+      if(this.explotionEffect!=null){
+        this.explotionEffect.play();
+      }
       let explosion= document.createElement("div");
       $(plane).append(explosion);
       $(explosion).addClass("explosion");
@@ -29,8 +35,8 @@ TrafficInspector.prototype.colisionPlanes = function (enemy, plane, isLife) {
       $(explosion2).css("top", "+="+((enemyHeight-this.explotionSize)/2));
       $(explosion2).css("left", "+="+((enemyWidth-this.explotionSize)/2));
     }
-    else{
-      //effect life picked
+    else if(this.lifeUp!=null){
+      this.lifeUp.play();
     }
     return true;
   }
