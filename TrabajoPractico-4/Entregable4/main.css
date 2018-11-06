@@ -89,9 +89,19 @@ a:hover{
   font-size: 35px;
 }
 
+.navbar-brand, h1{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 30px !important;
+}
 .hi-score{
   text-align: center;
 }
+h1{
+font-family: 'Roboto', sans-serif !important;
+  color:white !important;
+  margin-left: 15% !important;
+}
+
 th{
   color: green;
 }
