@@ -138,8 +138,8 @@ $(document).ready(function() {
     }
     score.push(register);
     let orderScore= sortJSON(score, "points");
+    $("#score-data").html("<thead><th>NAME</th><th>POINTS</th></thead>");
 
-    let tbody= document.createElement("tbody");
     for (let i = 0; i < score.length; i++){
     let obj = score[i];
     let tr= document.createElement("tr");
@@ -148,9 +148,8 @@ $(document).ready(function() {
         let attrValue = obj[key];
         $(tr).append("<td>"+attrValue+"</td>");
     }
-    $(tbody).append(tr);
+    $("#score-data").append(tr);
 }
-  $("#score-data").html(tbody);
     $("#modalFinish").css("display", "none");
 
       $(".start-menu").css("z-index", 999);
