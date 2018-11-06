@@ -3,6 +3,9 @@ $(document).ready(function() {
   let score=[];
   $(".start-menu").css("z-index", 999);
 
+  if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+       alert("Hola! para una mejor performance jugá en Chrome");
+  }
 
   $(document).on("keydown", function(event){
       if(game!=null){
