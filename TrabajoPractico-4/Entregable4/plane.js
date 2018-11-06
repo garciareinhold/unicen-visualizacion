@@ -45,8 +45,13 @@ Plane.prototype.move = function (event) {
   }
 };
 
-Plane.prototype.beginLives = function (livesCollection) {
-  this.lives=$(livesCollection).toArray();
+Plane.prototype.beginLives = function () {
+  for (var i = 0; i < 3; i++) {
+    let life= document.createElement("div");
+    $(life).addClass("lives");
+    this.livesData.append(life);
+    this.lives.push(life);
+  }
 };
 
 Plane.prototype.colisioned = function () {

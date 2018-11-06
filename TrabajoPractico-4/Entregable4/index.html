@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
   <link rel="stylesheet" href="main.css">
   <title></title>
 </head>
 
 <body>
-  <div class="game-background">
-    <div id="modalFinish" class="modal">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">GAMES.con</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Home </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Best of the week<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Last Published</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About us</a>
+      </li>
+    </ul>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search more games..." aria-label="Search">
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="game-title">
+  <p>Memories 1942</p>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <h1>YOU LOOSE!</h1>
-        <p><input id="finalScore" type="text" readonly name="" value="0"></p>
-        <p id="name">Name<input id="namePlayer" type="text" name="" value=""></p>
-        <button id="submit-score" type="button" name="button">Send</button>
+        ...
       </div>
     </div>
+</div>
+
+</div>
+  <div class="game-background">
     <div class="sky-background">
       <div id="plane" class="plane"></div>
       <div id="enemy1" class="enemy enemy1"></div>
@@ -36,9 +74,15 @@
       <p>SCORE</p>
       <span id="score">0 </span>
       <div id="lives-container">
-        <div class="lives"></div>
-        <div class="lives"></div>
-        <div class="lives"></div>
+
+      </div>
+    </div>
+    <div id="modalFinish" class="modal">
+      <div class="modal-content">
+        <h1>YOU LOOSE!</h1>
+        <p><input id="finalScore" type="text" readonly name="" value="0"></p>
+        <p id="name">Name<input id="namePlayer" type="text" name="" value=""></p>
+        <button id="submit-score" type="button" name="button">Send</button>
       </div>
     </div>
   </div>
@@ -52,46 +96,37 @@
   </div>
   <div class="options">
     <img src="images/game-wallpaper.jpg" alt="">
-    <ul class="lists">
-      <li><a class="options-item " data-id="difficulty" href="">DIFFICULTY: </a><input id="difficulty" readonly type="" name="" value="NORMAL"></li>
-      <li><a class="options-item" data-id="music" href="">MUSIC: </a><input id="music" readonly type="" name="" value="ON"></li>
-      <li><a class="options-item" data-id="sound-effect" href="">SOUND-EFFECTS: </a><input id="sound-effect" readonly type="" name="" value="ON"></li>
-      <li><a class="options-item" data-id="back" href="">BACK</a></li>
-    </ul>
-
+    <div class="options-menu">
+      <ul class="lists">
+        <li><a class="options-item " data-id="difficulty" href="">DIFFICULTY: </a><input id="difficulty" readonly type="" name="" value="NORMAL"></li>
+        <li><a class="options-item" data-id="music" href="">MUSIC: </a><input id="music" readonly type="" name="" value="ON"></li>
+        <li><a class="options-item" data-id="sound-effect" href="">SFX: </a><input id="sound-effect" readonly type="" name="" value="ON"></li>
+        <li><a class="options-item" data-id="back" href="">BACK</a></li>
+      </ul>
+    </div>
   </div>
   <div class="hi-score">
-    <h1>High scores</h1>
-   <table id="score-data">
-     <thead>
-       <th>NAME</th>
-       <th>POINTS</th>
-     </thead>
-     <tbody>
-      <tr>
-        <td>Pepe</td>
-        <td>90</td>
-      </tr>
-      <tr>
-        <td>Juan</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Jose</td>
-        <td>10</td>
-      </tr>
-     </tbody>
-   </table>
-  </div>
-  <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
-  <script type="text/javascript"src="plane.js"></script>
-  <script type="text/javascript"src="trafficInspector.js"></script>
-  <script type="text/javascript"src="game2.js"></script>
-  <script type="text/javascript"src="index.js"></script>
+    <h1>HIGH SCORES</h1>
+    <div class="table-score">
+      <table>
+        <thead>
+          <th>NAME</th>
+          <th>POINTS</th>
+        </thead>
+        <tbody id="score-data">
+        </tbody>
+      </table>
+    </div>
 
+    <p><a class="back-hiscore" data-id="back" href="">BACK</a></p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="plane.js"></script>
+  <script type="text/javascript" src="trafficInspector.js"></script>
+  <script type="text/javascript" src="game2.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
 </html>

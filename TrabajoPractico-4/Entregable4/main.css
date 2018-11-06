@@ -1,46 +1,61 @@
 .game-background, .options, .hi-score, .how-to-play, .start-menu {
   margin: auto;
-  top: 15px;
+  top: 20%;
   right: 0;
-  bottom: 0;
   left: 0;
   width: 717px;
   height: 500px;
   position: absolute;
   overflow: hidden;
 }
-*{
+/* *{
   border:1px solid brown;
-}
+} */
 img{
   margin-top: 5%;
 }
 
-.options{
-  background-color: black;
+h2{
+  margin-left: 25% !important;
 }
 
+
+
+.lupa{
+  margin-top:0px;
+  font-size: 200%
+  height: 100%;
+  width: 40px;
+  cursor: pointer;
+}
 input{
   border: none;
   background-color: rgba(0, 0, 0, 0);
   color: green;
-  font-family: 'VT323', monospace;
-  font-size: 20px;
+  /* font-family: 'VT323', monospace; */
+  font-size: 35px;
   direction:ltr;
   overflow:hidden;
+  text-align: center;
+
 }
 
-.start-menu, .options{
+.start-menu, .options, .hi-score{
   text-align: center;
   background-color: black;
+}
+
+.options-menu{
+  width: 70%;
+  margin-left: 15%;
 }
 
 .lists{
   list-style-type: none;
   padding:0px;
-  margin-top: 5%;
+  margin-top: 3%;
   font-family: 'VT323', monospace;
-  font-size: 200%;
+  font-size: 35px;
 }
 
 li{
@@ -60,13 +75,30 @@ a:hover{
   transition: color .25s ease-in;
 }
 
-.hi-score{
-  background-color: yellow;
+.back-hiscore{
+  font-family: 'VT323', monospace;
+  font-size: 35px;
 }
 
+.hi-score{
+  text-align: center;
+}
+th{
+  color: green;
+}
 .how-to-play{
   background-color: black;
 }
+table{
+  font-family: 'VT323', monospace;
+  font-size: 30px;
+  text-align: center;
+  margin-left: 40%;
+  color: white;
+}
+/* .table-score{
+  text-align: center;
+} */
 
 .sky-background {
   height: 100%;
@@ -86,7 +118,7 @@ a:hover{
   text-align: center;
 }
 
-p, h1{
+ h1{
   font-family: 'VT323', monospace;
   font-size: 70px;
   color: green;
@@ -102,12 +134,16 @@ p, h1{
 
 #lives-container{
   margin-top: 15%;
-  width: 159px;
+  width: 75%;
   height: 153px;
-  left: 14%;
+  left: 12%;
   position:relative;
 }
-
+ .plane-data p{
+   color:green;
+   font-size: 60px;
+   font-family: 'VT323', monospace;
+ }
 .lives{
   left: 40px;
   height: 51px;
@@ -188,9 +224,9 @@ p, h1{
 }
 
 #modalFinish {
-    display: block;
+    display: none;
+    z-index: 1;
     position: absolute;
-    /* z-index: 999999; */
     left: 0;
     top: 0;
     width: 100%;
@@ -199,24 +235,75 @@ p, h1{
     text-align: center;
 }
 
-#namePlayer{
-  font-size: 50px;
+html, body{
+    min-height: 100% !important;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding:0;
 }
+.navBar{
+  width:100%;
+  height: 5%;
+  position: fixed;
+  background-color: blue;
+}
+
+.nav-item{
+  margin:0%;
+  padding: 0%;
+  height: 100%;
+  float: left;
+}
+
+.hamburger{
+  width: 8%;
+  text-align: center;
+}
+.logo{
+  width: 17%;
+}
+.search{
+  width: 50%;
+  text-align: center;
+}
+.login{
+  width: 25%
+}
+
+#search-box{
+  margin-top: .5%;
+  height: 70%;
+  width: 75%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 
 .modal-content {
-    background-color: rgba(255, 103, 33, 0.84);
+    background-color: rgb(145, 210, 70);
     margin: auto;
-    margin-top: 10%;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 2%;
     width: 50%;
+    height: 100%;
 }
 
+.logo p{
+  font-family: 'Luckiest Guy', cursive;
+  text-align: center;
+  width: 100%;
+  font-size: 180%;
+  margin:0px;
+  padding:0px
+}
+
+
 #finalScore{
-  font-size: 100px;
+  font-size: 40px;
 }
 #name{
   font-size: 50px;
+  font-family: 'VT323', monospace;
+  color:green
 }
 
 @keyframes immune {
@@ -249,4 +336,36 @@ p, h1{
   100% {
     background-position: -1792px;
   }
+}
+
+.oneUp-animation {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  top: 0%;
+  margin-left:10%;
+  animation: 2s bounceIn;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.lists li {
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+ a:hover{
+  text-decoration: none;
 }

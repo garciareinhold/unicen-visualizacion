@@ -54,12 +54,28 @@ Game.prototype.beginLifeInterval = function () {
                 complete: (function () {
                   if(this.plane.pickedLife){
                     this.plane.addLife();
+                    $(this.life).css("animation-play-state" , "paused");
+                    let oneUp= document.createElement("div");
+                    $(".sky-background").append(oneUp);
+                    $(oneUp).css({
+                      width:"107px",
+                      height:"52px",
+                      "background-image": "url(images/1up.png)",
+                      top: "45%",
+                      "margin-left": "40%"
+                    })
+                    console.log(oneUp);
+                    $(oneUp).addClass("oneUp-animation");
+
+                    setTimeout(function(){
+                      $(".oneUp-animation").remove();
+                    }, 2500)
                   }
                   this.plane.pickedLife=false;
                   this.lifeThrowed=false;
                 }).bind(this)
               })
-  }).bind(this), 20000)
+  }).bind(this), 30000)
 
 
 
@@ -72,7 +88,7 @@ Game.prototype.resetEnemies = function () {
 Game.prototype.setOptionsUser = function (optionsUser) {
   this.optionsUser= optionsUser;
   this.difficulty= optionsUser.difficulty.difficulty;
-  this.increasedDifficulty= optionsUser.difficulty.increase;
+
   if(this.optionsUser.music.music=="ON"){
     this.music = new Audio("audios/music.mp3");
     this.music.loop=true;
@@ -83,11 +99,13 @@ Game.prototype.setOptionsUser = function (optionsUser) {
   }
 };
 Game.prototype.begin = function () {
+  $("#score").html("0");
+  $(this.plane.element).css("left", "25%");
+  $(this.plane.element).css("top", "400px");
   if(this.music!=null){
     this.music.play();
   }
-  $(".enemy1movement").css("animation-duration", this.optionsUser.difficulty.enemies+"s");
-  this.plane.beginLives($('.lives'));
+  this.plane.beginLives();
   this.raiseEnemies();
   this.beginEnemyInterval();
   this.beginUpdateInterval();
@@ -98,7 +116,6 @@ Game.prototype.beginEnemyInterval = function () {
   this.enemiesInterval = setInterval((function(){
     this.throwEnemies();
     if(this.difficulty>=1000){
-      this.difficulty-=this.increasedDifficulty;
       console.log(this.difficulty);
     }
   }).bind(this), this.difficulty);
@@ -163,12 +180,19 @@ Game.prototype.finish = function () {
     this.music.pause();
   }
   this.stopLifeInterval();
+  this.playBackground();
+  $('.enemy').css("animation-play-state", "running");
+  $("#score").html("0");
+  $("#plane").removeClass("immunity");
   $("#finalScore").attr("value", this.plane.score);
-  $(".game-background").css("z-index", 999998)
+  $("#modalFinish").css("z-index", 9999);
   $("#modalFinish").css("display", "block");
-  $("#modalFinish").css("z-index", 999999);
-
-
+  this.airTrafficInspector.removeExplotions();
+  for (var i = 0; i < this.enemies.length; i++) {
+    let enemy= this.enemies[i];
+  $(enemy).removeClass('enemy1movement');
+  $(enemy).css("top", "-110px");
+}
 };
 Game.prototype.stopEnemies = function () {
   this.stopEnemyInterval();
@@ -212,7 +236,9 @@ Game.prototype.update = function () {
   if(this.airTrafficInspector.colisionPlanes(this.life, this.plane.element, true)){
       this.plane.pickedLife=true;
       console.log("picked");
-      $(this.life).css("opacity", 0);
+      //acá va el efecto del corazon
+      $(this.life).css("opacity", "0.0");
+
     }
 
 };

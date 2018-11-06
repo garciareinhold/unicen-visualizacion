@@ -1,7 +1,7 @@
 $(document).ready(function() {
   let game;
   let score=[];
-  $(".start-menu").css("z-index", 99999);
+  $(".start-menu").css("z-index", 999);
 
 
   $(document).on("keydown", function(event){
@@ -43,8 +43,8 @@ $(document).ready(function() {
           }
           break;
           default:
-          $('.options').css("z-index", 99998);
-          $(".start-menu").css("z-index", 99999);
+          $('.options').css("z-index", 998);
+          $(".start-menu").css("z-index", 999);
 
 
 
@@ -69,13 +69,22 @@ $(document).ready(function() {
   })
 
   function hiScore(){
-    $(".start-menu").css("z-index", 99998);
-    $('.hi-score').css("z-index", 99999);
+    $(".start-menu").css("z-index", 998);
+    $('.hi-score').css("z-index", 999);
+    $(".back-hiscore").on("click", function(event){
+      event.preventDefault();
+      $('.hi-score').css("z-index", 998);
+      $(".start-menu").css("z-index", 999);
+
+    })
   }
 
   function play() {
-    $(".start-menu").css("z-index", 99998);
-    $('.game-background').css("z-index", 99999);
+    $(".start-menu").css("z-index", 998);
+    $('.game-background').css("z-index", 999);
+    $('.sky-background').css("z-index", 1000);
+    $(".plane-data").css("z-index", 999);
+
     let optionsDifficulty= getOptionsDif();
     let optionsMusicSound= getOptionsMusicSound();
     let optionsUser= {
@@ -88,7 +97,9 @@ $(document).ready(function() {
   }
 
   function options() {
-      $('.options').css("z-index", 99999);
+    $(".start-menu").css("z-index", 998);
+
+      $('.options').css("z-index", 999);
   }
 
   function getOptionsMusicSound() {
@@ -102,33 +113,24 @@ $(document).ready(function() {
   }
   function getOptionsDif() {
     let difValue;
-    let inscreaseDif;
-    let enemiesVelocity;
     let difficulty= $("#difficulty").val();
     if (difficulty=="NORMAL"){
-      difValue= 6000;
-      increaseDif= 200;
-      enemiesVelocity=6;
+      difValue= 1500;
     }
     else if (difficulty=="HARD"){
-      difValue= 4000;
-      increaseDif= 300;
-      enemiesVelocity=4;
+      difValue= 700;
     }
     else{
-      difValue= 10000;
-      increaseDif= 100;
-      enemiesVelocity=8;
+      difValue= 2000;
     }
     let options= {
       "difficulty" : difValue,
-      "increase": increaseDif,
-      "enemies": enemiesVelocity
     }
     return options;
   }
 
   $("#submit-score").on("click", function(event){
+    console.log("entre");
     event.preventDefault();
     let register= {
       "name": $("#namePlayer").val(),
@@ -148,6 +150,10 @@ $(document).ready(function() {
     }
     $(tbody).append(tr);
 }
+  $("#score-data").html(tbody);
+    $("#modalFinish").css("display", "none");
+
+      $(".start-menu").css("z-index", 999);
   })
 
   function sortJSON(data, key) {
