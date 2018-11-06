@@ -42,17 +42,7 @@
     </form>
   </div>
 </nav>
-<div class="game-title">
-  <p>Memories 1942</p>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        ...
-      </div>
-    </div>
-</div>
 
 </div>
   <div class="game-background">
@@ -79,7 +69,7 @@
     </div>
     <div id="modalFinish" class="modal">
       <div class="modal-content">
-        <h1>YOU LOOSE!</h1>
+        <h1>YOU HAVE LOST!</h1>
         <p><input id="finalScore" type="text" readonly name="" value="0"></p>
         <p id="name">Name<input id="namePlayer" type="text" name="" value=""></p>
         <button id="submit-score" type="button" name="button">Send</button>
@@ -119,6 +109,14 @@
     </div>
 
     <p><a class="back-hiscore" data-id="back" href="">BACK</a></p>
+  </div>
+  <div class="controls">
+    <h2>Rules</h2>
+    <p>Pick up hearts every 30 sec</p>
+    <p>Resist as much as you can</p>
+    <p>Submit your score</p>
+    <h2>Controls</h2>
+    <img src="images/controls.png" alt="">
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="plane.js"></script>

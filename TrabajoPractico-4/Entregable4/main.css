@@ -1,5 +1,5 @@
-.game-background, .options, .hi-score, .how-to-play, .start-menu {
-  margin: auto;
+.game-background, .options, .hi-score, .how-to-play, .start-menu, .controls {
+  margin-left: 15%;
   top: 20%;
   right: 0;
   left: 0;
@@ -7,6 +7,16 @@
   height: 500px;
   position: absolute;
   overflow: hidden;
+  border-radius: 10px;
+}
+
+.controls{
+  text-align: center;
+  margin-left: 65%;
+  background-color: black;
+  width: 200px;
+  font-family: 'VT323', monospace;
+
 }
 /* *{
   border:1px solid brown;
@@ -15,29 +25,28 @@ img{
   margin-top: 5%;
 }
 
-h2{
-  margin-left: 25% !important;
+h2, p{
+  color:green;
+}
+h2, h1{
+
+  font-size: 45px;
+}
+
+.controls p{
+  font-size: 18px;
 }
 
 
-
-.lupa{
-  margin-top:0px;
-  font-size: 200%
-  height: 100%;
-  width: 40px;
-  cursor: pointer;
-}
 input{
   border: none;
   background-color: rgba(0, 0, 0, 0);
   color: green;
-  /* font-family: 'VT323', monospace; */
   font-size: 35px;
-  direction:ltr;
   overflow:hidden;
   text-align: center;
-
+  margin:0px;
+  padding-left: 0px;
 }
 
 .start-menu, .options, .hi-score{
@@ -120,7 +129,7 @@ table{
 
  h1{
   font-family: 'VT323', monospace;
-  font-size: 70px;
+  font-size: 55px;
   color: green;
   padding: 0px;
   margin: 20px;
@@ -241,6 +250,7 @@ html, body{
     width: 100%;
     margin: 0;
     padding:0;
+    background-color: #17a2b8;
 }
 .navBar{
   width:100%;
@@ -299,11 +309,17 @@ html, body{
 
 #finalScore{
   font-size: 40px;
+  font-family: 'VT323', monospace;
+
 }
 #name{
   font-size: 50px;
   font-family: 'VT323', monospace;
   color:green
+}
+
+#namePlayer{
+  border: 1px solid;
 }
 
 @keyframes immune {
