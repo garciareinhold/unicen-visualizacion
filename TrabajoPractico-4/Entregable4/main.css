@@ -96,8 +96,10 @@ a:hover{
 .hi-score{
   text-align: center;
 }
-.hi-score h1{
-  font-family: 'VT323', monospace;
+.modal-content h1{
+  font-family: 'VT323', monospace !important;
+  color: green !important;
+  font-size: 50px!important;
 }
 h1{
 font-family: 'Roboto', sans-serif !important;
