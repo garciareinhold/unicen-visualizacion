@@ -52,7 +52,7 @@ Game.prototype.beginLifeInterval = function () {
                    this.lifeThrowed=true;
                 }).bind(this),
                 complete: (function () {
-                  if(this.plane.pickedLife){
+                  if(this.plane.pickedLife && this.plane.lives.length<=6){
                     this.plane.addLife();
                     $(this.life).css("animation-play-state" , "paused");
                     let oneUp= document.createElement("div");
@@ -75,7 +75,7 @@ Game.prototype.beginLifeInterval = function () {
                   this.lifeThrowed=false;
                 }).bind(this)
               })
-  }).bind(this), 30000)
+  }).bind(this), 15000)
 
 
 
