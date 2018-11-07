@@ -96,6 +96,9 @@ a:hover{
 .hi-score{
   text-align: center;
 }
+.hi-score h1{
+  font-family: 'VT323', monospace;
+}
 h1{
 font-family: 'Roboto', sans-serif !important;
   color:white !important;
